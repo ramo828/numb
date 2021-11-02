@@ -9,7 +9,7 @@
 #include "lib/numb.h"
 
 char* upc = "sudo apt-get update";
-char* termuxCommand = "termux-setup-storage";
+char* termuxCommand = "termux-setup-storage && cd /sdcard/ && mkdir work";
 char* upAllApps = "yes | pkg install git make python wget termux* *-repo -y";
 char* upGrade = "yes | apt-get upgrade -y && apt-get dist-upgrade -y && pkg update -y";
 char* exec = "mv *.data /data/data/com.termux/files/usr/bin/";
