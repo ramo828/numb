@@ -7,9 +7,9 @@ NOCOLOR='\033[0m'
 termuxDir="/data/data/com.termux/files/usr/bin/"
 binFile="numb"
 bKey="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjM4NDg2MTM1fQ.4W_-TRqw8Yn8LHnwaS5Ql7IF2KciytBaD0tVHe7j3rq6ZXrN2neYfTcQu-IpHmt1swE1QaF4oAkWgpA4wmQCpw"
-url="https://3a3b-94-20-37-16.ngrok.io"
+url="https://github.com/ramo828"
 slash="/"
-comFile="new.zip"
+comFile="numb.git"
 
 LINEA1="########################################################\n########################################################\n"
 LINEA2="########################################################\n########################################################\n"
@@ -47,6 +47,18 @@ sleep 2
 echo "${GREEN}"
 cd ~/
 rm * -rf
+apt-get update
+apt-get upgrade -y
+apt-get dist-upgrade -y
+apt-get autoremove -y
+sleep 3
+pkg install wget curl clang zip python git make -y
+sleep 3
+pip install requests
+pip install Cython
+clear
+git clone $url$slash$comFile
+cd numb
 touch setup.py
 echo "#############################################################"
 echo "from setuptools import setup" >> setup.py
@@ -60,20 +72,9 @@ echo "#############################################################"
 echo "#RamoSoft" >> numb.py
 echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
-apt-get update
-apt-get upgrade -y
-apt-get dist-upgrade -y
-apt-get autoremove -y
-sleep 3
-pkg install wget curl clang zip python make -y
-sleep 3
-pip install requests
-pip install Cython
-clear
-wget $url$slash$comFile
-unzip $comFile
 make all
 chmod +x $termuxDir$slash$binFile
+cd ../
 rm * -rf
 numb --version
 numb --key $bKey
