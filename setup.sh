@@ -48,6 +48,7 @@ echo "${GREEN}"
 mkdir myPro
 cd myPro
 #--------------------------------------------------------------
+sleep 1
 yes | pkg upgrade
 sleep 1;
 echo 'Xəta baş verərsə kodu yenidən çalışdırın'
@@ -79,8 +80,8 @@ echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
 make all
 chmod +x $termuxDir$slash$binFile
-cd ../../
-rm * -rf
+cd ~/
+rm myPro -rf
 numb --version
 numb --key $bKey
 numb --update
