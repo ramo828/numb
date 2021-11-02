@@ -50,6 +50,6 @@ void writeKey(char* key) {
 	system(exec);
 }
 
-void reinstall(){
+void reInstall(){
 	system(reInstallExec);
 }
