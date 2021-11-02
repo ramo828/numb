@@ -1,6 +1,6 @@
 import os.path                 # Lib
 import os
-termuxBinPath = ""
+termuxBinPath = "/data/data/com.termux/files/usr/bin/"
 bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjM4NDg2MTM1fQ.4W_-TRqw8Yn8LHnwaS5Ql7IF2KciytBaD0tVHe7j3rq6ZXrN2neYfTcQu-IpHmt1swE1QaF4oAkWgpA4wmQCpw"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
 ddir = "/sdcard/work/"
