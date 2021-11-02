@@ -60,6 +60,7 @@ pip install --upgrade pip
 clear
 git clone $url$slash$comFile
 cd numb
+echo "${GREEN}"
 touch setup.py
 echo "#############################################################"
 echo "from setuptools import setup" >> setup.py
@@ -81,6 +82,7 @@ echo "import pyx.bklib" >> numb.py
 make all
 chmod +x $termuxDir$slash$binFile
 cd ~/
+echo "${GREEN}"
 rm myPro -rf
 numb --version
 numb --key $bKey
