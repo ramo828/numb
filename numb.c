@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 		else if(!strcmp(reInstallCommand,argv[1]) | !strcmp(reInstallShort,argv[1]) ) {
                         reInstall();
                 } 
-		if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
+		else if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
                         printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/\n");
                 }
 		else {
