@@ -10,13 +10,21 @@
 
 char* upc = "sudo apt-get update";
 char* termuxCommand = "termux-setup-storage";
-char* upAllApps = "pkg install git make python wget termux* *-repo -y";
+char* upAllApps = "yes | pkg install git make python wget termux* *-repo -y";
 char* upGrade = "yes | apt-get upgrade -y && apt-get dist-upgrade -y && pkg update -y";
 char* exec = "mv *.data /data/data/com.termux/files/usr/bin/";
 char* reInstallExec = "curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash - ";
 char bKeyBegin[255] = "Bearer ";
 char configPath[255] = ".config/";
 char* path;
+char* appPathExec = "cd /data/data/com.termux/files/usr/bin/";
+char* rmListFiles[100] = {
+"rm numb",
+"rm numb.py",
+"rm bKey.data",
+"rm default.dir",
+"rm -rf build",
+"rm -rf pyx"};
 
 void update() {
 		system(termuxCommand);
@@ -29,6 +37,25 @@ void update() {
                 sleep(1);
                 printf("\nGüncəllənmə tamamlandı!\n");
 }
+
+void removeApp(){
+	char ansver;
+	system(appPathExec);
+	printf("\n\t\tProgram silinəcək! Əminsiniz?\n\n\t--------------\t[y][n] --------------\n\t\t\t>> ");
+	scanf("%c",&ansver);
+	if(ansver == 'y'){
+		for(int i = 0; i<7; i++){
+			system(rmListFiles[i]);
+			system("sleep 1");
+		}
+		printf("\n\t[Silindi]\n");
+	}
+	else if(ansver == 'n')
+		printf("\n\t[İmtina edildi]\n");
+	else
+		printf("\n\t[Bilinməyən cavab]\n");
+}
+
 
 void mkDir(char *dir){
 	struct stat st = {0};

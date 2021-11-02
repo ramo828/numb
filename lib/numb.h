@@ -5,6 +5,7 @@
 #define __VERSION_APP__  "5.1.3"
 void update();
 void reInstall();
+void removeApp();
 void writeKey(char* key);
 void version();
 char *getDir();
