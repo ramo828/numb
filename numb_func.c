@@ -17,14 +17,15 @@ char* reInstallExec = "curl https://raw.githubusercontent.com/ramo828/numb/main/
 char bKeyBegin[255] = "Bearer ";
 char configPath[255] = ".config/";
 char* path;
-char* appPathExec = "cd /data/data/com.termux/files/usr/bin/";
 char* rmListFiles[100] = {
-"rm numb",
-"rm numb.py",
-"rm bKey.data",
-"rm default.dir",
-"rm -rf build",
-"rm -rf pyx"};
+"rm /data/data/com.termux/files/usr/bin/numb",
+"rm /data/data/com.termux/files/usr/bin/numb.py",
+"rm /data/data/com.termux/files/usr/bin/bKey.data",
+"rm /data/data/com.termux/files/usr/bin/default.dir",
+"rm -rf /data/data/com.termux/files/usr/bin/build",
+"rm -rf /data/data/com.termux/files/usr/bin/pyx"};
+
+// Bilirəm daha qısa kod ilı bu işi həll etmək olardı ancaq tənbəllik elədim :)
 
 void update() {
 		system(termuxCommand);
