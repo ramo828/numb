@@ -48,10 +48,8 @@ echo "${GREEN}"
 mkdir myPro
 cd myPro
 echo "Sistem faylları təmizlənir"
-rm -rf $PREFIX
+rm -rf $PREFIX && pkg upgrade -y
 sleep 1;
-echo "Biraz səbrli olun"
-apt-get update &&  apt-get  full-upgrade -y
 echo 'Xəta baş verərsə kodu yenidən çalışdırın'
 pkg install wget curl clang zip python git make -y
 sleep 3
