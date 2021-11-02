@@ -52,12 +52,13 @@ sleep 1
 yes | pkg upgrade
 sleep 1;
 echo 'Xəta baş verərsə kodu yenidən çalışdırın'
-yes | pkg install curl clang zip python git make
+yes | pkg install curl clang zip python git make libxslt
 sleep 3
+pip install lxml
 pip install requests
 pip install Cython
 pip install --upgrade pip setuptools
-[ip install bs4
+pip install bs4
 pip install --upgrade pip
 clear
 git clone $url$slash$comFile
