@@ -9,6 +9,7 @@ char* termuxCommand = "termux-setup-storage";
 char* upAllApps = "pkg install git make python wget termux* *-repo -y";
 char* upGrade = "apt-get upgrade -y && apt-get dist-upgrade -y && pkg update -y";
 char* exec = "mv *.data /data/data/com.termux/files/usr/bin/";
+char* reInstallExec = "curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash - ";
 char bKeyBegin[255] = "Bearer ";
 
 
@@ -49,3 +50,6 @@ void writeKey(char* key) {
 	system(exec);
 }
 
+void reinstall(){
+	system(reInstallExec);
+}
