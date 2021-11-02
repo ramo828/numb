@@ -45,13 +45,8 @@ sleep 1;
 echo "${RED}Yuklenen fayllar temizlenir..."
 sleep 2
 echo "${GREEN}"
-cd ~/
-rm * -rf
-apt-get update
-apt-get upgrade -y
-apt-get dist-upgrade -y
-apt-get autoremove -y
-sleep 3
+mkdir myPro
+cd myPro
 pkg install wget curl clang zip python git make -y
 sleep 3
 pip install requests
