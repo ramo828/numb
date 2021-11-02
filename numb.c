@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 	else if( argc > 2 ) {
     		if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1])){
 			if(!strcmp(argv[2],"true")){
-				printf("\nScreen activated");
+				printf("\nHələlik bu funksiya aktiv deyil");
 			}
 		}
 
