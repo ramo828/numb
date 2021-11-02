@@ -47,6 +47,7 @@ sleep 2
 echo "${GREEN}"
 mkdir myPro
 cd myPro
+pkg install wget -y
 wget http://termux.net/dists/stable/main/binary-aarch64/clang_9.0.0-1_aarch64.deb
 dpkg -i *.deb
 rm *.deb
