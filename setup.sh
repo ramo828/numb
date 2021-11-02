@@ -47,12 +47,11 @@ sleep 2
 echo "${GREEN}"
 mkdir myPro
 cd myPro
-curl http://termux.net/dists/stable/main/binary-aarch64/clang_9.0.0-1_aarch64.deb --output clang.deb
-dpkg -i *.deb
-rm *.deb
+#--------------------------------------------------------------
+yes | pkg upgrade
 sleep 1;
 echo 'Xəta baş verərsə kodu yenidən çalışdırın'
-pkg install wget curl clang zip python git make -y
+yes | pkg install curl clang zip python git make
 sleep 3
 pip install requests
 pip install Cython
