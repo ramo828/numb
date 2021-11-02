@@ -10,7 +10,7 @@ char* uShort = "-u";
 char* hShort = "-h";
 char* gShort = "-d";
 char* kShort = "-k";
-char* reInstallShort = "-re"
+char* reInstallShort = "-re";
 // Long command
 char* vCommand = "--version";
 char* upCommand = "--update";
