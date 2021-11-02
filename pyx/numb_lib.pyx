@@ -1,7 +1,7 @@
 import os.path                 # Lib
 import os
 #termuxBinPath = "/data/data/com.termux/files/usr/bin/"
-bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjM4NDg2MTM1fQ.4W_-TRqw8Yn8LHnwaS5Ql7IF2KciytBaD0tVHe7j3rq6ZXrN2neYfTcQu-IpHmt1swE1QaF4oAkWgpA4wmQCpw"
+bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQwMjE0NjAxfQ.eNQhBoIjyiUy1ZUbaSvuGb6Gxf_668ZetfPOBV3WQNtlim9kgsP2nDM8ej2KCd5-ue1O8BnjnCZz_aP6LN70Rw"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
 ddir = "/sdcard/work/"
 def readConfig(conf):

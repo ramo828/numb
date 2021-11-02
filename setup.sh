@@ -84,8 +84,8 @@ chmod +x $termuxDir$slash$binFile
 cd ~/
 echo "${GREEN}"
 rm myPro -rf
+numb -k $bKey
 numb --update
 numb -a author
 numb --version
-numb --key $bKey
 numb --help
