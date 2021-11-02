@@ -23,7 +23,7 @@ def keyReadFile():
         return str(bKey)
     else:
         print("#####Default key selected#####")
-        print(os.path.exists(termuxBinPath+"bKey.data"))
+        print(os.path.exists("bKey.data"))
         bKey = bKeyDefault
         return str(bKey)
 
