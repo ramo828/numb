@@ -75,7 +75,7 @@ echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
 make all
 chmod +x $termuxDir$slash$binFile
-cd ../
+cd ../../
 rm * -rf
 numb --version
 numb --key $bKey
