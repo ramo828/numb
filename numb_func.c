@@ -26,7 +26,7 @@ void update() {
 
 }
 void version() {
-	printf("\n Version %s-%s\n",__VERSION_APP__,__TIME__);
+	printf("Version %s-%s\n",__VERSION_APP__,__TIME__);
 	#if __ANDROID__
 	printf(" Cihaz Android\n");
 	#elif __linux__

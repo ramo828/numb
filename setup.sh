@@ -56,6 +56,7 @@ pkg install wget curl clang zip python git make -y
 sleep 3
 pip install requests
 pip install Cython
+pip install --upgrade pip
 clear
 git clone $url$slash$comFile
 cd numb
