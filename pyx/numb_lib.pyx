@@ -55,13 +55,13 @@ def conv_numeric(counter):
     sonluq = ["a","b","c","d"]
     clone = ""
     for i in range(counter):
-        if(i<=10):
+        if(i<10):
             clone = "_"+sonluq[0]+str(i)
-        elif(i<=100):
+        elif(i<100):
             clone = "_"+sonluq[1]+str(i)
-        elif(i<=1000):
+        elif(i<1000):
             clone = "_"+sonluq[2]+str(i)
-        elif(i<=10000):
+        elif(i<10000):
             clone = "_"+sonluq[3]+str(i)
     return clone;
 
