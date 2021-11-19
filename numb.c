@@ -26,7 +26,6 @@ char* hMessage = "\t Created by Mammadli Ramiz\n\t Version: 1.5.2\n \t Programı
 char* pyc = "python /data/data/com.termux/files/usr/bin/numb.py";
 // Main
 int main(int argc, char *argv[]) {
-	printf("%s",getDir());
 	if( argc == 2 ) {
 	      	if(!strcmp(upCommand,argv[1]) | !strcmp(uShort,argv[1])){
                               	update();
@@ -35,7 +34,7 @@ int main(int argc, char *argv[]) {
                               printf("%s",hMessage);
 		}
 		else if(!strcmp(kCommand,argv[1]) | !strcmp(kShort,argv[1]) ){
-                        printf("Xətalı giriş.\nNümunə: (main --key key)");
+                        printf("\nXətalı giriş.\nNümunə: (main --key key)\n");
 	        }
 		else if(!strcmp(vCommand,argv[1]) | !strcmp(vShort,argv[1]) ) {
 			version();
@@ -47,10 +46,10 @@ int main(int argc, char *argv[]) {
                         reInstall();
                 } 
 		if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
-                        printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/");
+                        printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/\n");
                 }
 		else {
-		printf("Bilinməyən əmr!\n");
+		printf("\nBilinməyən əmr!\n");
 		}
 
    	}
@@ -61,7 +60,7 @@ int main(int argc, char *argv[]) {
 		}
 	else if( argc > 2 ) {
                 if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
-                        printf("\nQovluq: %s", argv[2]);
+                        printf("\nQovluq: %s\n", argv[2]);
                         mkDir(".config");
 			writeConfig("default.dir",argv[2]);
                 }
@@ -69,7 +68,7 @@ int main(int argc, char *argv[]) {
 	else if( argc > 2 ) {
     		if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1])){
 			if(!strcmp(argv[2],"true")){
-				printf("\nHələlik bu funksiya aktiv deyil");
+				printf("\nHələlik bu funksiya aktiv deyil\n");
 			}
 		}
 
