@@ -10,12 +10,14 @@ char* uShort = "-u";
 char* hShort = "-h";
 char* gShort = "-d";
 char* kShort = "-k";
+char* oShort = "-o";
 char* reInstallShort = "-re";
 // Long command
 char* vCommand = "--version";
 char* upCommand = "--update";
 char* hCommand = "--help";
 char* kCommand = "--key";
+char* oCommand = "--output";
 char* gCommand = "--display";
 char* reInstallCommand = "--reinstall";
 // Message
@@ -24,6 +26,7 @@ char* hMessage = "\t Created by Mammadli Ramiz\n\t Version: 1.5.2\n \t Programı
 char* pyc = "python /data/data/com.termux/files/usr/bin/numb.py";
 // Main
 int main(int argc, char *argv[]) {
+	printf("%s",getDir());
 	if( argc == 2 ) {
 	      	if(!strcmp(upCommand,argv[1]) | !strcmp(uShort,argv[1])){
                               	update();
@@ -43,16 +46,26 @@ int main(int argc, char *argv[]) {
 		else if(!strcmp(reInstallCommand,argv[1]) | !strcmp(reInstallShort,argv[1]) ) {
                         reInstall();
                 } 
+		if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
+                        printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/");
+                }
 		else {
 		printf("Bilinməyən əmr!\n");
 		}
 
    	}
    	else if( argc > 2 ) {
-    		if(!strcmp("--key",argv[1])){
+    		if(!strcmp(kCommand,argv[1]) | !strcmp(kShort,argv[1])){
 			printf("KEY: %s", argv[2]);
 			writeKey(argv[2]);
 		}
+	else if( argc > 2 ) {
+                if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
+                        printf("\nQovluq: %s", argv[2]);
+                        mkDir(".config");
+			writeConfig("default.dir",argv[2]);
+                }
+	}
 	else if( argc > 2 ) {
     		if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1])){
 			if(!strcmp(argv[2],"true")){

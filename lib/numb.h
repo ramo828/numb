@@ -7,3 +7,6 @@ void update();
 void reInstall();
 void writeKey(char* key);
 void version();
+char *getDir();
+void mkDir(char* dir);
+void writeConfig(char* config, char* value);
