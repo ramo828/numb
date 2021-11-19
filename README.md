@@ -1,7 +1,7 @@
 Numb Bakcell Tool
 
 Termux install
-pkg install curl && curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash -
+pkg install curl -y && curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash -
 
 </br><b>numb --help -h</b>
 </br><b>numb --version -v</b>
