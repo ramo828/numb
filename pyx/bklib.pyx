@@ -7,39 +7,18 @@
 import requests                # Lib
 import json                    # Lib
 import time as tm              # Lib
-import base64 as b64           # Lib
-import os.path                 # Lib
+import numb_lib as nl
+from numb_lib import keyReadFile
 
-termuxBinPath = "/data/data/com.termux/files/usr/bin/"
 
-def keyReadFile():
-    if(os.path.exists(termuxBinPath+"bKey.data")):
-        bFile = open(termuxBinPath+"bKey.data","r")
-        print("#####External key selected#####")
-        bKey = bFile.read()
-        return str(bKey)
-    else:
-        print("#####Default key selected#####")
-        print(os.path.exists(termuxBinPath+"bKey.data"))
-        bKey = bKeyDefault
-        return str(bKey)
 
-author_logo = """
 
-    ██████╗  █████╗ ███╗   ███╗ ██████╗ ███████╗ ██████╗ ███████╗████████╗
-    ██╔══██╗██╔══██╗████╗ ████║██╔═══██╗██╔════╝██╔═══██╗██╔════╝╚══██╔══╝
-    ██████╔╝███████║██╔████╔██║██║   ██║███████╗██║   ██║█████╗     ██║   
-    ██╔══██╗██╔══██║██║╚██╔╝██║██║   ██║╚════██║██║   ██║██╔══╝     ██║   
-    ██║  ██║██║  ██║██║ ╚═╝ ██║╚██████╔╝███████║╚██████╔╝██║        ██║   
-    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝        ╚═╝                                                                       
-"""
 category = dict();             # Luget yarat
 url = "https://public-api.azerconnect.az/msbkcposappreservation/api/freemsisdn-nomre/search";
-begin = 0                      # Baslangic prefix
-end = 5;                       # Son prefix
+begin = 0                      # Baslangic 
 err = 0;                       # Xeta
-path = "/sdcard/work/";        # Export edilecek qovluq
-fileName = "Ramo_SOFT_allContacts.vcf"   # Export edilecek kintakt fayli
+path = "default.dir"           # Export edilecek qovluq
+fileName = "Ramo_SOFT_all_Contacts.vcf"   # Export edilecek kintakt fayli
 contactName = "Metros";        # Default Kontaktlarin adi
 dataTwo = "";                  # Data 2
 dataThree = "";                # Data 3
@@ -62,7 +41,6 @@ category["gümüş"] = "1582551485948558941";              # Gumus key
 category["qızıl"] = "1582551461421619154";              # Qizil key
 category["platin"] = "1582551437850968791";             # Platin key
 categoryKey099 = "bürünc"     # Buruc nomreler
-bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjM2NDY2OTYxfQ.0orKOSoJP8xNQC87jW39px0yhVFtd8ouSDB47DEHa4vT7IRRH0r35D3yGdN6iUCcPLjMvKTFaLbWW7ObwRZxIQ"
 bKey = ""
 #-------------------------------------------------
 headers = {'content-type': 'application/json',          # Content type json
@@ -71,7 +49,6 @@ headers = {'content-type': 'application/json',          # Content type json
 'Accept-Language':'tr-TR,tr;q=0.9,az-TR;q=0.8,az;q=0.7,en-US;q=0.6,en;q=0.5',
 'Authorization':keyReadFile(),
 'Connection':'keep-alive'}
-cryptography = """QEBAQEBAQEBAQEBAQEBAQEBAQEBAQChDKU1hbW1hZGxpQFJhbWl6QEBAQEBAQEBAQEBAQEBAQEBAQEBAQAo="""
 
 #-------------------------------------------------
 #-------------------------------------------
@@ -81,12 +58,15 @@ dataVcard = [
 ,"TEL;TYPE=WORK,MSG:"
 ,"EMAIL;TYPE=INTERNET:\n"
 ,"END:VCARD\n"]
-
-w = open(path+fileName,"w")
-print(b64.b64decode(cryptography))
-print(author_logo)
+author_logo = nl.logo()
+try:
+    w = open(nl.readConfig(path)+fileName,"w")
+except FileNotFoundError:
+    print("Göstərilən adres mövcud deyil\n"+nl.readConfig(path)+"\n")
+    exit(1)
+finally:
+    print(author_logo)
 #-------------------------------------------
-
 #-------------------------------------------------
 
 
@@ -201,7 +181,6 @@ print("\n\tMəlumatlar serverdən alınır")
 tm.sleep(1)
 print("\n\tMəlumatlar işlənir")
 tm.sleep(1)
-
 r = requests.get(url, params={"prefix":prefixSel[prefixValue],"msisdn":number,"categoryId":category[categoryKey],"showReserved":"true","size":max,"page":page}, headers=headers)
 data = json.loads(r.text);
 for i in data:
@@ -230,6 +209,7 @@ print("""
 Tapılan nomrə sayı: """+ str(count/end)+"""
 -----------------------------------------
 """)
+print(nl.readConfig(path)+fileName)
  #
  #    ██████╗  █████╗ ███╗   ███╗ ██████╗ ███████╗ ██████╗ ███████╗████████╗
  #    ██╔══██╗██╔══██╗████╗ ████║██╔═══██╗██╔════╝██╔═══██╗██╔════╝╚══██╔══╝

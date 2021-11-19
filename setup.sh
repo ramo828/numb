@@ -68,6 +68,11 @@ echo "setup(" >> setup.py
 echo "    ext_modules = cythonize(\"pyx/bklib.pyx\")," >> setup.py
 echo "    compiler_directives={'language_level' : 3}" >> setup.py
 echo ")"  >> setup.py
+#### Python Lib
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
 touch numb.py
 echo "#############################################################"
 echo "#RamoSoft" >> numb.py
