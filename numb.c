@@ -23,7 +23,7 @@ char* gCommand = "--display";
 char* rmCommand = "--remove";
 char* reInstallCommand = "--reinstall";
 // Message
-char* hm[100] = {"\n\t###Created by Mammadli Ramiz###\n",
+char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"\tHaqqında [numb --help]\n",
 			"\tProgramın versiyası [numb --versiya]\n",
 			"\tKey yükləmə [numb --key (key)]\n",
