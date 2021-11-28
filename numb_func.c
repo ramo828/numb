@@ -44,7 +44,7 @@ void removeApp(){
 	printf("\n\t\tProgram silinəcək! Əminsiniz?\n\n\t--------------\t[y][n] --------------\n\t\t\t>> ");
 	scanf("%c",&ansver);
 	if(ansver == 'y'){
-		for(int i = 0; i<7; i++){
+		for(int i = 0; i<=5; i++){
 			printf("%s\n",rmListFiles[i]);
 			system(rmListFiles[i]);
 		}
