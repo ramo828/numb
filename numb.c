@@ -31,7 +31,7 @@ char* hm[100] = {"\n\t###Created by Mammadli Ramiz###\n",
 			"\tƏlavə paketləri yeniləmə [numb --update]\n",
 			"\tProgramı Silmə [--remove]\n",
 			"\tGrafik mod [--dispay (true)]\n",
-			"\tÇıxarış [--output (qovluq)]",  //Gelecekde
+			"\tÇıxarış [--output (qovluq)]\n",  //Gelecekde
 			"",  //Elave
 			"",  //Funksiyalar
 			""}; //Ucun
