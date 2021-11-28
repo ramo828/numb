@@ -23,7 +23,8 @@ char* rmListFiles[100] = {
 "rm /data/data/com.termux/files/usr/bin/bKey.data",
 "rm -rf .config",
 "rm -rf /data/data/com.termux/files/usr/bin/build",
-"rm -rf /data/data/com.termux/files/usr/bin/pyx"};
+"rm -rf /data/data/com.termux/files/usr/bin/pyx",
+"rm -rf .pyxbld"};
 
 // Bilirəm daha qısa kod ilı bu işi həll etmək olardı ancaq tənbəllik elədim :)
 
@@ -44,7 +45,7 @@ void removeApp(){
 	printf("\n\t\tProgram silinəcək! Əminsiniz?\n\n\t--------------\t[y][n] --------------\n\t\t\t>> ");
 	scanf("%c",&ansver);
 	if(ansver == 'y'){
-		for(int i = 0; i<=5; i++){
+		for(int i = 0; i<=6; i++){
 			printf("%s\n",rmListFiles[i]);
 			system(rmListFiles[i]);
 		}
