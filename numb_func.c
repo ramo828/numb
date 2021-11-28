@@ -21,7 +21,7 @@ char* rmListFiles[100] = {
 "rm /data/data/com.termux/files/usr/bin/numb",
 "rm /data/data/com.termux/files/usr/bin/numb.py",
 "rm /data/data/com.termux/files/usr/bin/bKey.data",
-"rm /data/data/com.termux/files/usr/bin/default.dir",
+"rm -rf .config",
 "rm -rf /data/data/com.termux/files/usr/bin/build",
 "rm -rf /data/data/com.termux/files/usr/bin/pyx"};
 
@@ -45,6 +45,7 @@ void removeApp(){
 	scanf("%c",&ansver);
 	if(ansver == 'y'){
 		for(int i = 0; i<7; i++){
+			printf("%s",rmListFiles[i]);
 			system(rmListFiles[i]);
 			system("sleep 1");
 		}
