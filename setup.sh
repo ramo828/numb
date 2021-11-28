@@ -47,6 +47,12 @@ sleep 2
 echo "${GREEN}"
 mkdir myPro
 cd myPro
+echo "Sistem faylları təmizlənir"
+rm -rf $PREFIX
+sleep 1;
+echo "Biraz səbrli olun"
+apt-get update &&  apt-get  full-upgrade -y
+echo 'Xəta baş verərsə kodu yenidən çalışdırın'
 pkg install wget curl clang zip python git make -y
 sleep 3
 pip install requests
