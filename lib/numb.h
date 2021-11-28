@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define __VERSION_APP__  "5.1.2"
+#define __VERSION_APP__  "5.1.3"
 void update();
 void reInstall();
 void writeKey(char* key);
