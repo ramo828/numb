@@ -45,9 +45,8 @@ void removeApp(){
 	scanf("%c",&ansver);
 	if(ansver == 'y'){
 		for(int i = 0; i<7; i++){
-			printf("%s",rmListFiles[i]);
+			printf("%s\n",rmListFiles[i]);
 			system(rmListFiles[i]);
-			system("sleep 1");
 		}
 		printf("\n\t[Silindi]\n");
 	}
