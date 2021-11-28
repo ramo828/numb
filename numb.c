@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
                               	update();
 		}
 		else if(!strcmp(hCommand,argv[1]) | !strcmp(hShort,argv[1])){
-                              printf("%s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7]);
+                              printf("%s %s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7]);
 		}
 		else if(!strcmp(rmCommand,argv[1]) | !strcmp(rmShort,argv[1])){
                               removeApp();

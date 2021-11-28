@@ -41,7 +41,6 @@ void update() {
 
 void removeApp(){
 	char ansver;
-	system(appPathExec);
 	printf("\n\t\tProgram silinəcək! Əminsiniz?\n\n\t--------------\t[y][n] --------------\n\t\t\t>> ");
 	scanf("%c",&ansver);
 	if(ansver == 'y'){
