@@ -10,4 +10,5 @@ pkg install curl -y && curl https://raw.githubusercontent.com/ramo828/numb/main/
 </br><b>numb --remove -rm</b>
 </br><b>numb --update -u</b>
 </br><b>numb --key -k</b>
+</br><b>numb --output -o</b>
 

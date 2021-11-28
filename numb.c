@@ -23,7 +23,7 @@ char* gCommand = "--display";
 char* rmCommand = "--remove";
 char* reInstallCommand = "--reinstall";
 // Message
-char* hm[100] = {"\n\tCreated by Mammadli Ramiz\n",
+char* hm[100] = {"\n\t###Created by Mammadli Ramiz###\n",
 			"\tHaqqında [numb --help]\n",
 			"\tProgramın versiyası [numb --versiya]\n",
 			"\tKey yükləmə [numb --key (key)]\n",
@@ -31,7 +31,7 @@ char* hm[100] = {"\n\tCreated by Mammadli Ramiz\n",
 			"\tƏlavə paketləri yeniləmə [numb --update]\n",
 			"\tProgramı Silmə [--remove]\n",
 			"\tGrafik mod [--dispay (true)]\n",
-			"",  //Gelecekde
+			"\tÇıxarış [--output (qovluq)]",  //Gelecekde
 			"",  //Elave
 			"",  //Funksiyalar
 			""}; //Ucun
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
                               	update();
 		}
 		else if(!strcmp(hCommand,argv[1]) | !strcmp(hShort,argv[1])){
-                              printf("%s %s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7]);
+                              printf("%s %s %s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7],hm[8]);
 		}
 		else if(!strcmp(rmCommand,argv[1]) | !strcmp(rmShort,argv[1])){
                               removeApp();
