@@ -112,6 +112,7 @@ void writeConfig(char* config, char* value) {
 
 
 void reInstall(){
+	removeApp();
 	system(reInstallExec);
 }
 
