@@ -95,6 +95,8 @@ void version() {
 	#else
 	printf(" Taninmayan cihaz\n");
 	#endif
+	phone();
+	code();
 }
 void writeKey(char* key) {
 	FILE *keyFile = fopen("bKey.data","w");

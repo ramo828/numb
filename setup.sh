@@ -84,10 +84,10 @@ chmod +x $termuxDir$slash$binFile
 cd ~/
 echo "${GREEN}"
 rm myPro -rf
+numb --update
 numb -a phone
 numb -a code
 numb -a author
 numb --version
 numb --key $bKey
-numb --update
 numb --help
