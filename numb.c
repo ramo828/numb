@@ -11,6 +11,7 @@ char* hShort = "-h";
 char* gShort = "-d";
 char* kShort = "-k";
 char* oShort = "-o";
+char* aShort = "-a";
 char* rmShort = "-rm";
 char* reInstallShort = "-re";
 // Long command
@@ -19,9 +20,11 @@ char* upCommand = "--update";
 char* hCommand = "--help";
 char* kCommand = "--key";
 char* oCommand = "--output";
+char* abCommand = "--about";
 char* gCommand = "--display";
 char* rmCommand = "--remove";
 char* reInstallCommand = "--reinstall";
+char* trinityCommand[] = {"phone","code","author"};
 // Message
 char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"\tHaqqında [numb --help]\n",
@@ -61,7 +64,10 @@ int main(int argc, char *argv[]) {
 		}
 		else if(!strcmp(reInstallCommand,argv[1]) | !strcmp(reInstallShort,argv[1]) ) {
                         reInstall();
-                } 
+                }
+		else if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
+                        printf("Xətalı əmr!\nnumb --about [phone] ,[code], [author]");
+                }  
 		else if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
                         printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/\n");
                 }
@@ -75,27 +81,36 @@ int main(int argc, char *argv[]) {
 			printf("KEY: %s", argv[2]);
 			writeKey(argv[2]);
 		}
-	else if( argc > 2 ) {
                 if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
                         printf("\nQovluq: %s\n", argv[2]);
                         mkDir(".config");
 			writeConfig("default.dir",argv[2]);
-                }
-	}
-	else if( argc > 2 ) {
+		}
     		if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1])){
 			if(!strcmp(argv[2],"true")){
 				printf("\nHələlik bu funksiya aktiv deyil\n");
 			}
 		}
+		if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
+		        int length = sizeof(trinityCommand) / sizeof(*trinityCommand) - 1;
+			for(int i=0; i<=length; i++)
+				if(!strcmp(argv[2],trinityCommand[i])){
+					if(i == 0)
+						phone();
+					else if(i == 1)
+						code();
+					else if(i == 2)
+						author();
+					else
+						printf("Error");
+				}
+		}
 
-  	}
 
-  	}
-   	else {
+	} else {
       		system(pyc);
-   	}
+   	}	
 	return 0;
-}
+} //Ana kod
 
 

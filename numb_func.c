@@ -114,3 +114,42 @@ void writeConfig(char* config, char* value) {
 void reInstall(){
 	system(reInstallExec);
 }
+
+// Trinity
+void  author(){
+	char *bilgi[] = {"\tMüəllif: Ramiz Məmmədli",
+			"\tFacebook: http://fb.me/no.name666828",
+			"\tInstagram: Ramiz828",
+			"\tGithub: Ramo828",
+			"\tWhatsapp: (+994) 55 830 27 66",
+			"\tE-mail: illegalism666@gmail.com"};
+	int length = sizeof(bilgi) / sizeof(*bilgi) - 1;
+	for(int i= 0; i<=length; i++){
+			printf("%s\n",bilgi[i]);
+			}
+}
+
+void phone(){
+	char *bilgi[] = {"getprop ro.product.vendor.model",
+			"getprop ro.product.vendor.brand",
+			"getprop ro.product.vendor.board",
+			"getprop ro.product.vendor.build.data",
+			"getprop ro.product.vendor.build.fingerprint",
+			"getprop ro.product.vendor.version.release",
+			"getprop ro.product.cpu.abi",
+			"getprop ro.product.locale",
+			"getprop ro.product.locale.language",
+			"getprop ro.product.locale.region"};
+        int length = sizeof(bilgi) / sizeof(*bilgi) - 1;
+	for(int i= 0; i<=length; i++){
+			system("echo \"--------------------------\"");
+                        system(bilgi[i]);
+                        }
+
+}
+
+void code() {
+
+
+}
+// Trinity
