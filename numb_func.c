@@ -133,10 +133,10 @@ void  author(){
 void phone(){
 	char *bilgi[] = {"getprop ro.product.vendor.model",
 			"getprop ro.product.vendor.brand",
-			"getprop ro.product.vendor.board",
-			"getprop ro.product.vendor.build.data",
-			"getprop ro.product.vendor.build.fingerprint",
-			"getprop ro.product.vendor.version.release",
+			"getprop ro.product.vendor.device",
+			"getprop ro.product.build.date",
+			"getprop ro.product.build.fingerprint",
+			"getprop ro.product.build.version.release",
 			"getprop ro.product.cpu.abi",
 			"getprop ro.product.locale",
 			"getprop ro.product.locale.language",
@@ -150,6 +150,15 @@ void phone(){
 }
 
 void code() {
+	char *bilgi[] = {"python --version",
+			"gcc --version",
+			"bash --version"
+			};
+	int length = sizeof(bilgi) / sizeof(*bilgi) - 1;
+        for(int i= 0; i<=length; i++){
+                        system("echo \"--------------------------\"");
+                        system(bilgi[i]);
+                        }
 
 
 }
