@@ -87,7 +87,9 @@ rm myPro -rf
 numb --update
 numb -a phone
 numb -a code
+echo "${RED}"
 numb -a author
+echo "${GREEN}"
 numb --version
 numb --key $bKey
 numb --help
