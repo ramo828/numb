@@ -85,11 +85,11 @@ print("""
 #""")
 #operator = int(input(">> "))
 #if(operator == 0):
-    print("\n\tBAKCELL\n")
-    number = nl.quest1()                                    # Nomreni daxil edin
-    bRun()
-    nl.banBegin()
-    nl.banEnd(count,end)
+print("\n\tBAKCELL\n")
+number = nl.quest1()                                    # Nomreni daxil edin
+bRun()
+nl.banBegin()
+nl.banEnd(count,end)
 #elif(operator == 1):
 #    azEnd = nl.getAzEnd()
 #    print(azEnd)
