@@ -33,7 +33,7 @@ def aRun():
             dataFour = n
             nl.vcardWrite(w,                                # Vcard skelet
             contactName,                                    # Kontakt adi
-            prefixAz,                                         # Prefix
+            prefixAz,                                       # Prefix
             pre,                                            # Prefix Araligi
             dataFour,                                       # Yekun data
             count)                                          # Kontaktin ad ardicilligi
@@ -79,27 +79,28 @@ print("""
     --------------------------------------------------
     ##################################################
     """)
-#print("""Çalışacağınız operator: \n
-#        \t0 - Bakcell\n
-#        \t1 - Azərcell\n
-#""")
-#operator = int(input(">> "))
-#if(operator == 0):
-print("\n\tBAKCELL\n")
-number = nl.quest1()                                    # Nomreni daxil edin
-bRun()
-nl.banBegin()
-nl.banEnd(count,end)
-#elif(operator == 1):
-#    azEnd = nl.getAzEnd()
-#    print(azEnd)
-#    print("\n\tAZƏRCELL\n")
-#    number = nl.quest1()                                    # Nomreni daxil edin
-#    aRun()
-#    nl.banBegin()
-#    nl.banEnd(count,azEnd)
-#else:
-#    print("Bilinməyən əmr!")
+print("""Çalışacağınız operator: \n
+       \t0 - Bakcell\n
+       \t1 - Azərcell\n
+""")
+
+operator = int(input(">> "))
+if(operator == 0):
+    print("\n\tBAKCELL\n")
+    number = nl.quest1()                                    # Nomreni daxil edin
+    bRun()
+    nl.banBegin()
+    nl.banEnd(count,end)
+elif(operator == 1):
+   azEnd = nl.getAzEnd()
+   print(azEnd)
+   print("\n\tAZƏRCELL\n")
+   number = nl.quest1()                                    # Nomreni daxil edin
+   aRun()
+   nl.banBegin()
+   nl.banEnd(count,azEnd)
+else:
+   print("Bilinməyən əmr!")
 
 
 ##############################################################################

@@ -1,19 +1,14 @@
 import os.path                 # Lib
 import os
-<<<<<<< HEAD
 import time as tm
 import requests
 from bs4 import BeautifulSoup as soup
 
 #######################################################################################
 #######################################VARIABLE########################################
-bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjM4NDg2MTM1fQ.4W_-TRqw8Yn8LHnwaS5Ql7IF2KciytBaD0tVHe7j3rq6ZXrN2neYfTcQu-IpHmt1swE1QaF4oAkWgpA4wmQCpw"
-=======
-#termuxBinPath = "/data/data/com.termux/files/usr/bin/"
 bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQwMjE0NjAxfQ.eNQhBoIjyiUy1ZUbaSvuGb6Gxf_668ZetfPOBV3WQNtlim9kgsP2nDM8ej2KCd5-ue1O8BnjnCZz_aP6LN70Rw"
->>>>>>> b0071eb68b14fabf8dfd91939a88d1c71b32e95e
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
-ddir = "/sdcard/work/"
+ddir = ""
 number = "xxxxx"               # Null data protected
 err = 0;                       # Xeta
 path = "default.dir"           # Export edilecek qovluq
@@ -244,21 +239,15 @@ def readConfig(conf):
         return configData
 
 def keyReadFile():
-<<<<<<< HEAD
     global bKeyDefault
     os.system("clear")
     if(os.path.exists(termuxBinPath+"bKey.data")):
         bFile = open(termuxBinPath+"bKey.data","r")
-=======
-    if(os.path.exists("bKey.data")):
-        bFile = open("bKey.data","r")
->>>>>>> b0071eb68b14fabf8dfd91939a88d1c71b32e95e
         print("#####External key selected#####")
         bKeyDefault = bFile.read()
         return bKeyDefault
     else:
         print("#####Default key selected#####")
-<<<<<<< HEAD
         print(os.path.exists(termuxBinPath+"bKey.data"))
         return str(bKeyDefault)
 
@@ -412,11 +401,6 @@ def getAzPrefix():
 
 
 
-=======
-        print(os.path.exists("bKey.data"))
-        bKey = bKeyDefault
-        return str(bKey)
->>>>>>> b0071eb68b14fabf8dfd91939a88d1c71b32e95e
 
 def logo():
     logo_author= """
