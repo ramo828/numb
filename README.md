@@ -1,4 +1,4 @@
-Numb 1.5.4
+Numb 1.8.4
 
 Termux install
 pkg install curl -y && curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash -

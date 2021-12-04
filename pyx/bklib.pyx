@@ -4,218 +4,104 @@
 # |    |   \ / __ \|  Y Y  (  <_> )        \/    |    \|     \     |    |   
 # |____|_  /(____  /__|_|  /\____/_______  /\_______  /\___  /     |____|   
 #        \/      \/      \/              \/         \/     \/             
+############################################################################
 import requests                # Lib
 import json                    # Lib
 import time as tm              # Lib
 import numb_lib as nl
-from numb_lib import keyReadFile
-
-
-
-
-category = dict();             # Luget yarat
-url = "https://public-api.azerconnect.az/msbkcposappreservation/api/freemsisdn-nomre/search";
-begin = 0                      # Baslangic 
-err = 0;                       # Xeta
-path = "default.dir"           # Export edilecek qovluq
-fileName = "Ramo_SOFT_all_Contacts.vcf"   # Export edilecek kintakt fayli
+import os
+import warnings
+############################################################################
 contactName = "Metros";        # Default Kontaktlarin adi
 dataTwo = "";                  # Data 2
 dataThree = "";                # Data 3
 count = 0;                     # Saygac
-max = 1000*10;                 # Maksimum ne qeder gosterilsin
-page = 0;                      # Sehife 0
-prefixSel = ["55","99"];       # Prefix secimi
 prefixValue = 0;               # Default deyer 0
-number = "xxxxx"               # Null data protected
-categoryKey = "sadə";          # Sade Nomreler
-#------------------055----------------------------
-category["sadə"] = "1429263300716842758";               # Sade key
-category["xüsusi1"] = "1579692503636523114";            # Xususi1 key
-category["xüsusi2"] = "1579692547752973099";            # Xususi2 key
-categoryKey055 = "sadə"        # 099 sade nomreler
-#------------------099----------------------------
-category["sadə099"] = "1574940031138475856";            # Sade key
-category["bürünc"] = "1582551518546595643";             # Burunc key
-category["gümüş"] = "1582551485948558941";              # Gumus key
-category["qızıl"] = "1582551461421619154";              # Qizil key
-category["platin"] = "1582551437850968791";             # Platin key
-categoryKey099 = "bürünc"     # Buruc nomreler
-bKey = ""
-#-------------------------------------------------
-headers = {'content-type': 'application/json',          # Content type json
-'Accept':'application/json, text/plain, */*',           # Accept type json
-'Accept-Encoding':'gzip, deflate, br',                  # Encoding gzip compressed data
-'Accept-Language':'tr-TR,tr;q=0.9,az-TR;q=0.8,az;q=0.7,en-US;q=0.6,en;q=0.5',
-'Authorization':keyReadFile(),
-'Connection':'keep-alive'}
-
-#-------------------------------------------------
-#-------------------------------------------
-dataVcard = [
- "BEGIN:VCARD\n"
-,"N:","FN:"
-,"TEL;TYPE=WORK,MSG:"
-,"EMAIL;TYPE=INTERNET:\n"
-,"END:VCARD\n"]
-author_logo = nl.logo()
-try:
-    w = open(nl.readConfig(path)+fileName,"w")
-except FileNotFoundError:
-    print("Göstərilən adres mövcud deyil\n"+nl.readConfig(path)+"\n")
-    exit(1)
-finally:
-    print(author_logo)
-#-------------------------------------------
-#-------------------------------------------------
+end = 0
+warnings.filterwarnings("ignore")
+new_data = ""
+##############################################################################
+################################AZERCELL######################################
+def aRun():
+    global new_data
+    global count
+    prefixAz = nl.getAzPrefix()
+    nl.numb_run(number)
+    new_data = nl.sum_data()
+    for pre in range(nl.getAzBegin(),nl.getAzEnd()):
+        for n in new_data.split("\n"):
+            dataFour = n
+            nl.vcardWrite(w,                                # Vcard skelet
+            contactName,                                    # Kontakt adi
+            prefixAz,                                         # Prefix
+            pre,                                            # Prefix Araligi
+            dataFour,                                       # Yekun data
+            count)                                          # Kontaktin ad ardicilligi
+            count=count+1
 
 
+##############################################################################
+#################################BAKCELL######################################
+def bRun():
+    global count
+    global end
+    nl.AI_Select()                                          # Kategoriyalari daxil edin
+    prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
+    categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
+    nl.numLimit()                                           # Nomre alagini daxil et
+    begin = nl.getIndex(0)                                  # Nomre baslangic (araliq)
+    end = nl.getIndex(1)                                    # Nomre son (araliq)
+    reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
+    prefix = nl.prefixDef()                                 # Prefix deyiskeni
+    r = nl.conBakcell()                                     # Request data
+    data = json.loads(r.text);                              # Json load data 1
+    for i in data:                                          # Json datasini parcala
+        dataTwo = (i["freeMsisdnList"])                     # Json List freeMsisdnList ayir
+    for pre in range(begin, end):                           # Nomre araligi 0-5
+        for i2 in dataTwo:                                  # freeMsisdnList listdeki melumatlari ayir
+            dataFour = str(i2["msisdn"]);                   # Load data 2
+            nl.vcardWrite(w,                                # Vcard skelet
+            contactName,                                    # Kontakt adi
+            prefix,                                         # Prefix
+            pre,                                            # Prefix Araligi
+            dataFour,                                       # Yekun data
+            count)                                          # Kontaktin ad ardicilligi
+            count=count+1
 
-
+##############################################################################
+##############################APP_RUN#########################################
+author_logo = nl.logo()                                 # Muellif logosu
+w = nl.fileControl()                                    # config file control
 print("""
-##################################################
---------------------------------------------------
-\tCreated by Mammadli Ramiz
---------------------------------------------------
-##################################################
-""")
-#-------------------------------------------------
-print(""""
---------------------------------------------------
-Nömrə kombinasiyasını daxil edin və boş xanalari x ilə tamamlayın.
-Məs: 83027xx
---------------------------------------------------
-""")
+    ##################################################
+    --------------------------------------------------
+    \tCreated by Mammadli Ramiz
+    --------------------------------------------------
+    ##################################################
+    """)
+#print("""Çalışacağınız operator: \n
+#        \t0 - Bakcell\n
+#        \t1 - Azərcell\n
+#""")
+#operator = int(input(">> "))
+#if(operator == 0):
+    print("\n\tBAKCELL\n")
+    number = nl.quest1()                                    # Nomreni daxil edin
+    bRun()
+    nl.banBegin()
+    nl.banEnd(count,end)
+#elif(operator == 1):
+#    azEnd = nl.getAzEnd()
+#    print(azEnd)
+#    print("\n\tAZƏRCELL\n")
+#    number = nl.quest1()                                    # Nomreni daxil edin
+#    aRun()
+#    nl.banBegin()
+#    nl.banEnd(count,azEnd)
+#else:
+#    print("Bilinməyən əmr!")
 
-while (len(number) <7):
-    if(err > 0):
-        print("""
-        ------------------------------
-        Nömrə düzgün qeyd edilməyib
-        ------------------------------
-        """)    
-    err=err+1;
-    number = str(input(">> "))                                      # Sual 1 
-prefixValue = int(input("Prefix: (0 - 55; 1 - 99: "));              # Sual 2 055 yoxsa 099?
-if(prefixSel[prefixValue] == "55"):
-    print("""-------------------------------------\n
-    \tKategoriya seç
-    \n0 - Sadə\n1 - Xüsusi1\n2 - Xüsusi2\n
-    -------------------------------------""")
-    cat = int(input(">> "));                                        # Sual 3
-    if(cat == 0):
-        categoryKey = "sadə"
-    elif(cat == 1):
-        categoryKey = "xüsusi1"
-    elif(cat == 2):
-        categoryKey = "xüsusi2"
-    else:
-        print("""
-        ----------------
-        Xətalı seçim
-        ----------------
-        """)
-elif(prefixSel[prefixValue] == "99"):
-     print("""-------------------------------------\n
-    \tKategoriya seç
-    \n0 - Sadə\n1 - Bürünc\n2 - Gümüş\n3 - Qızıl\n4 - Platin
-    -------------------------------------""")
-     cat = int(input(">> "))                                        #Sual 4
-     
-     if(cat == 0):
-        categoryKey = "sadə099"
-     elif(cat == 1):
-        categoryKey = "bürünc"
-     elif(cat == 2):
-        categoryKey = "gümüş"
-     elif(cat == 3):
-        categoryKey = "qızıl"
-     elif(cat == 4):
-        categoryKey = "platin"
-     else:
-        print("""
-        ------------------
-        Xətalı seçim
-        -------------------
-        """)
-else:
-        print("""
-        -------------------
-        Xətalı seçim
-        -------------------
-        """)
-reverseValue = 0;                                                                 # 055 nomrələr seçildikdə kontakta 099
-if(prefixValue == 0):                                                             # nömrələri əlavə et
-    reverseValue = 1                                                              #
-else:                                                                             #
-    reverseValue = 0 
 
-intervalMsg = """\n
-\t ----Operator aralığını daxil edin----
-\t 1) Azərcell  (050)
-\t 2) Azərcell  (051)
-\t 3) Bakcell   (0{})
-\t 4) NarMobile (070)
-\t 5) NarMobile (077)
-\t 0) Hamısı
-\t (Nümunə: 1:3) (Azərcell-dən Bakcell-ə qədər)
-""".format(prefixSel[reverseValue])
-print(intervalMsg);
-rawData = str(input(">> "))
-noRawData = ""
-if(not rawData.isdigit()):
-    noRawData = rawData.split(":")
-    begin = int(noRawData[0])-1
-    end = int(noRawData[1])
-elif(int(rawData) == 0):
-    begin = 0
-    end = 5
-else:
-    print("Xəta baş verdi")
-
-#-------------------------------------------------                                                             #
-prefix = ["+99450","+99451","+994"+prefixSel[reverseValue],"+99470","+99477"]     # dogru
-
-tm.sleep(1)
-print("\n\tMəlumatlar serverdən alınır")
-tm.sleep(1)
-print("\n\tMəlumatlar işlənir")
-tm.sleep(1)
-r = requests.get(url, params={"prefix":prefixSel[prefixValue],"msisdn":number,"categoryId":category[categoryKey],"showReserved":"true","size":max,"page":page}, headers=headers)
-data = json.loads(r.text);
-for i in data:
-    dataTwo = (i["freeMsisdnList"])
-for pre in range(begin, end):
-    for i2 in dataTwo:
-        dataFour = str(i2["msisdn"]);
-        w.write(dataVcard[0]
-		+dataVcard[1]+contactName+"_"+str(count)+"\n"	
-		+dataVcard[2]+contactName+"_"+str(count)+"\n"
-		+dataVcard[3]+prefix[pre]+dataFour[2:9]+"\n"
-		+dataVcard[4]
-		+dataVcard[5])
-        count=count+1
-print("\n\tKontakt Hazırlanır")
-tm.sleep(1)
-print("\n\tKontaktlar Hazırdır")
-
-print("""
-\n
-------------------------------------------
-Kontaktların sayı: """+ str(count)+"""
-------------------------------------------
-""")
-print("""
-Tapılan nomrə sayı: """+ str(count/end)+"""
------------------------------------------
-""")
-print(nl.readConfig(path)+fileName)
- #
- #    ██████╗  █████╗ ███╗   ███╗ ██████╗ ███████╗ ██████╗ ███████╗████████╗
- #    ██╔══██╗██╔══██╗████╗ ████║██╔═══██╗██╔════╝██╔═══██╗██╔════╝╚══██╔══╝
- #    ██████╔╝███████║██╔████╔██║██║   ██║███████╗██║   ██║█████╗     ██║   
- #    ██╔══██╗██╔══██║██║╚██╔╝██║██║   ██║╚════██║██║   ██║██╔══╝     ██║   
- #    ██║  ██║██║  ██║██║ ╚═╝ ██║╚██████╔╝███████║╚██████╔╝██║        ██║   
- #    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝        ╚═╝   
- #                                                                          
- #
+##############################################################################
+print(nl.readConfig(nl.getFP(0))+nl.getFP(1))
+##############################################################################
