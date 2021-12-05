@@ -13,9 +13,9 @@ import os
 import warnings
 ############################################################################
 try:
-	cn = nl.readConfig("contact.name") 
+    cn = nl.readConfig("contact.name") 
 except:
-	cn = "Metros"
+    cn = "Metros"
 if len(cn) > 0:
     contactName = cn                                        # Default Kontaktlarin adi
 else:
