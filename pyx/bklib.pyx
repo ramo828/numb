@@ -14,7 +14,7 @@ import warnings
 ############################################################################
 try:
     contactName = nl.readConfig("contact.name")             # Default Kontaktlarin adi
-except ValueError:
+except:
     contactName = "Metros"
 dataTwo = "";                                               # Data 2
 dataThree = "";                                             # Data 3
