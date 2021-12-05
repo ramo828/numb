@@ -79,9 +79,10 @@ print("""
     --------------------------------------------------
     ##################################################
     """)
-	print("""Çalışacağınız operator: \n
-       \t0 - Bakcell\n
-       \t1 - Azərcell\n
+print("""
+        Çalışacağınız operator: \n
+        \t0 - Bakcell\n
+        \t1 - Azərcell\n
 	""")
 
 operator = int(input(">> "))
