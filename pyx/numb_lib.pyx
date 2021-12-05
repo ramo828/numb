@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as soup
 #######################################VARIABLE########################################
 bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQwMjE0NjAxfQ.eNQhBoIjyiUy1ZUbaSvuGb6Gxf_668ZetfPOBV3WQNtlim9kgsP2nDM8ej2KCd5-ue1O8BnjnCZz_aP6LN70Rw"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
-ddir = ""#"/sdcard/work/"
+ddir = "/sdcard/work/"
 number = "xxxxx"               # Null data protected
 err = 0;                       # Xeta
 path = "default.dir"           # Export edilecek qovluq
