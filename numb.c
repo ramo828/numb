@@ -13,7 +13,9 @@ char* kShort = "-k";
 char* oShort = "-o";
 char* aShort = "-a";
 char* rmShort = "-rm";
+char* stsShort = "-sts";
 char* reInstallShort = "-re";
+char* cnShort = "-cn";
 // Long command
 char* vCommand = "--version";
 char* upCommand = "--update";
@@ -23,8 +25,10 @@ char* oCommand = "--output";
 char* abCommand = "--about";
 char* gCommand = "--display";
 char* rmCommand = "--remove";
+char* stsCommand = "--status";
 char* reInstallCommand = "--reinstall";
 char* trinityCommand[] = {"phone","code","author"};
+char* cnCommand = "--contactName";
 // Message
 char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"\tHaqqında [numb --help]\n",
@@ -66,11 +70,18 @@ int main(int argc, char *argv[]) {
                         reInstall();
                 }
 		else if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
-                        printf("Xətalı əmr!\nnumb --about [phone] ,[code], [author]");
+                        printf("\nXətalı əmr!\nnumb --about [phone] ,[code], [author]");
                 }  
 		else if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
                         printf("\nXətalı daxil etmə\nnumb--output /sdcard/work/\n");
                 }
+		else if(!strcmp(stsCommand,argv[1]) | !strcmp(stsShort,argv[1]))		{
+			printf("\nAxşam axşam bu ne xətadı :)");
+		}
+		else if(!strcmp(cnCommand,argv[1]) | !strcmp(cnShort,argv[1])){
+                        printf("\nXətalı əmr!\n numb --contactName ad");
+                }
+
 		else {
 		printf("\nBilinməyən əmr!\n");
 		}
@@ -78,7 +89,7 @@ int main(int argc, char *argv[]) {
    	}
    	else if( argc > 2 ) {
     		if(!strcmp(kCommand,argv[1]) | !strcmp(kShort,argv[1])){
-			printf("KEY: %s", argv[2]);
+			printf("KEY: %s\n", argv[2]);
 			writeKey(argv[2]);
 		}
                 if(!strcmp(oCommand,argv[1]) | !strcmp(oShort,argv[1])){
@@ -105,8 +116,21 @@ int main(int argc, char *argv[]) {
 						printf("Error");
 				}
 		}
+	
+		if(!strcmp(stsCommand,argv[1]) | !strcmp(stsShort,argv[1])){
+			if(!strcmp(argv[2],"proUser")){
+				 mkDir(".config");
+                        	 writeConfig("user.status", "1");
+			}
+			else {
+			printf("Yenə bir xata :(");
+			}
+		}
 
-
+			if(!strcmp(cnCommand,argv[1]) | !strcmp(cnShort,argv[1])){                              mkDir(".config");
+                                writeConfig("contact.name", argv[2]);
+				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
+		 }	
 	} else {
       		system(pyc);
    	}	

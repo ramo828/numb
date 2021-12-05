@@ -5,21 +5,28 @@
 # |____|_  /(____  /__|_|  /\____/_______  /\_______  /\___  /     |____|   
 #        \/      \/      \/              \/         \/     \/             
 ############################################################################
-import requests                # Lib
-import json                    # Lib
-import time as tm              # Lib
+import requests                                              # Lib
+import json                                                  # Lib
+import time as tm                                            # Lib
 import numb_lib as nl
 import os
 import warnings
 ############################################################################
-contactName = "Metros";        # Default Kontaktlarin adi
-dataTwo = "";                  # Data 2
-dataThree = "";                # Data 3
-count = 0;                     # Saygac
-prefixValue = 0;               # Default deyer 0
+try:
+    contactName = nl.readConfig("contact.name")             # Default Kontaktlarin adi
+except ValueError:
+    contactName = "Metros"
+dataTwo = "";                                               # Data 2
+dataThree = "";                                             # Data 3
+count = 0;                                                  # Saygac
+prefixValue = 0;                                            # Default deyer 0
 end = 0
 warnings.filterwarnings("ignore")
 new_data = ""
+try:
+    status = int(nl.readConfig("user.status"))
+except ValueError:
+    status = 0
 ##############################################################################
 ################################AZERCELL######################################
 def aRun():
@@ -79,14 +86,19 @@ print("""
     --------------------------------------------------
     ##################################################
     """)
-#print("""
-#        Çalışacağınız operator: \n
-#        \t0 - Bakcell\n
-#        \t1 - Azərcell\n
-#	""")
+if(status == 1):
+    print("\n\t-----------ProMod-----------\n")
+    print("""
+           Çalışacağınız operator: \n
+            \t0 - Bakcell\n
+            \t1 - Azərcell\n
+	    """)
 
-operator = 0 # int(input(">> "))
+    operator = int(input(">> "))
+else:
+    operator = 0
 if(operator == 0):
+    print(nl.readConfig("user.status"))
     print("\n\tBAKCELL\n")
     number = nl.quest1()                                    # Nomreni daxil edin
     bRun()

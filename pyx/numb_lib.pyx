@@ -47,6 +47,7 @@ prefixGlo = ["+99450","+99451","+99410","+99455","+99499","+99470","+99477","+99
 azBegin = 0
 azEnd = int(len(prefixGlo))
 azIndex = 3                                             # 010 nomre
+configData = ""
 #######################################################################################
 ######################################ORTAQ############################################
 def quest1():
@@ -103,6 +104,7 @@ def banEnd(count,end):
     Tapılan nomrə sayı: """+ str(count/end)+"""
     -----------------------------------------
     """)
+    outputInfo()
 def banBegin():
     tm.sleep(1)
     print("\n\tMəlumatlar serverdən alınır")
@@ -231,12 +233,17 @@ def readConfig(conf):
     if(os.path.exists(dirs+conf)):
         config = open(dirs+conf,"r")
         configData = config.read()
-        print("OUTPUT: "+configData)
         return configData
     else:
         configData = ddir
-        print("OUTPUT: "+configData)
         return configData
+
+def outputInfo():
+    global configData
+    print("OUTPUT: "+configData)
+
+
+
 
 def keyReadFile():
     global bKeyDefault
