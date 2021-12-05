@@ -56,32 +56,35 @@ yes | pkg install curl clang zip python git make
 sleep 3
 pip install requests
 pip install Cython
+pip install --upgrade pip setuptools
+[ip install bs4
 pip install --upgrade pip
 clear
 git clone $url$slash$comFile
 cd numb
 echo "${GREEN}"
-#touch setup.py
-#echo "#############################################################"
-#echo "from setuptools import setup" >> setup.py
-#echo "from Cython.Build import cythonize" >> setup.py
-#echo "setup(" >> setup.py
-#echo "    ext_modules = cythonize(\"pyx/bklib.pyx\")," >> setup.py
-#echo "    compiler_directives={'language_level' : 3}" >> setup.py
-#echo ")"  >> setup.py
+touch setup.py
+echo "#############################################################"
+echo "from setuptools import setup" >> setup.py
+echo "from Cython.Build import cythonize" >> setup.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/bklib.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
 #### Python Lib
-#echo "setup(" >> setup.py
-#echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
-#echo "    compiler_directives={'language_level' : 3}" >> setup.py
-#echo ")"  >> setup.py
-#touch numb.py
-#echo "#############################################################"
-#echo "#RamoSoft" >> numb.py
-#echo "import pyximport; pyximport.install()" >> numb.py
-#echo "import pyx.bklib" >> numb.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
+touch numb.py
+echo "#############################################################"
+echo "#RamoSoft" >> numb.py
+echo "import pyximport; pyximport.install()" >> numb.py
+echo "import pyx.bklib" >> numb.py
 make all
 chmod +x $termuxDir$slash$binFile
 cd ~/
+mkdir -p /sdcard/work
 echo "${GREEN}"
 rm myPro -rf
 numb -k $bKey
