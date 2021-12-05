@@ -98,7 +98,6 @@ if(status == 1):
 else:
     operator = 0
 if(operator == 0):
-    print(nl.readConfig("user.status"))
     print("\n\tBAKCELL\n")
     number = nl.quest1()                                    # Nomreni daxil edin
     bRun()
