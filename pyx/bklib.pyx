@@ -84,7 +84,7 @@ print("""
        \t1 - Azərcell\n
 	""")
 
-operator = 0 int(input(">> "))
+operator = int(input(">> "))
 if(operator == 0):
     print("\n\tBAKCELL\n")
     number = nl.quest1()                                    # Nomreni daxil edin
