@@ -348,6 +348,7 @@ def numb_run(number):
       if(len(sp) == 0):
          if(count_num == 1 and len(sp) == 0):
             print("Melumat yoxdur")
+            exit(1) # deyisdim
          print("Səhifə sayı: "+str(count_num-1))
          stopFlag = False
       else:
