@@ -90,6 +90,7 @@ echo "${GREEN}"
 rm myPro -rf
 numb -k $bKey
 numb --update
+numb --contactName Metros
 numb -a author
 numb --version
 numb --help
