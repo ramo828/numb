@@ -12,13 +12,9 @@ import numb_lib as nl
 import os
 import warnings
 ############################################################################
-#try:
-cn = nl.readConfig("contact.name") 
-#except:
-    #cn = "Metros"
-if len(cn) > 0:
-    contactName = cn                                        # Default Kontaktlarin adi
-else:
+try:
+    contactName = nl.readConfig("contact.name") 
+except:
     contactName = "Metros"
 dataTwo = "";                                               # Data 2
 dataThree = "";                                             # Data 3
