@@ -12,10 +12,10 @@ import numb_lib as nl
 import os
 import warnings
 ############################################################################
-try:
-    cn = nl.readConfig("contact.name") 
-except:
-    cn = "Metros"
+#try:
+cn = nl.readConfig("contact.name") 
+#except:
+    #cn = "Metros"
 if len(cn) > 0:
     contactName = cn                                        # Default Kontaktlarin adi
 else:
