@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as soup
 #######################################VARIABLE########################################
 bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQwMjE0NjAxfQ.eNQhBoIjyiUy1ZUbaSvuGb6Gxf_668ZetfPOBV3WQNtlim9kgsP2nDM8ej2KCd5-ue1O8BnjnCZz_aP6LN70Rw"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
-ddir = "/sdcard/work/"
+ddir = ""
 number = "xxxxx"               # Null data protected
 err = 0;                       # Xeta
 path = "default.dir"           # Export edilecek qovluq
@@ -50,6 +50,22 @@ azIndex = 3                                             # 010 nomre
 configData = ""
 #######################################################################################
 ######################################ORTAQ############################################
+
+def conv_numeric(counter):
+    sonluq = ["a","b","c","d"]
+    clone = ""
+    for i in range(counter):
+        if(i<=10):
+            clone = "_"+str(i)+sonluq[0]
+        elif(i<=100):
+            clone = "_"+str(i)+sonluq[1]
+        elif(i<=1000):
+            clone = "_"+str(i)+sonluq[2]
+        elif(i<=10000):
+            clone = "_"+str(i)+sonluq[3]
+    return clone;
+
+
 def quest1():
     #-------------------------------------------------
     print(""""
@@ -113,10 +129,10 @@ def banBegin():
     tm.sleep(1)
 
 def vcardWrite(w,contactName,prefix,pre,dataFour,count1):
-     w.write(
-     dataVcard[0]
-	+dataVcard[1]+contactName+"_"+str(count1)+"\n"	
-	+dataVcard[2]+contactName+"_"+str(count1)+"\n"
+    w.write(
+    dataVcard[0]
+	+dataVcard[1]+contactName+conv_numeric(count1)+"\n"	
+	+dataVcard[2]+contactName+conv_numeric(count1)+"\n"
 	+dataVcard[3]+prefix[pre]+dataFour[2:9]+"\n"
 	+dataVcard[4]
 	+dataVcard[5])
