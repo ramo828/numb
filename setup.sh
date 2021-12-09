@@ -82,9 +82,10 @@ echo "#############################################################"
 echo "#RamoSoft" >> numb.py
 echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
+make all
 make make-deb
 mv *.deb ~/
-make all
+rm -rf ../
 chmod +x $termuxDir$slash$binFile
 cd ~/
 mkdir -p /sdcard/work

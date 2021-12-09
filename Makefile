@@ -75,6 +75,6 @@ yukle: $(NAME)
 	cp -r build/lib.linux* $(BINPATH)
 	cp -r build/temp.linux* $(BINPATH)
 	cp -r pyx $(BINPATH)
-	rm * -rf
+	#rm * -rf
 	clear
 
