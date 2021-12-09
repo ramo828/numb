@@ -85,7 +85,6 @@ echo "import pyx.bklib" >> numb.py
 make all
 make make-deb
 mv *.deb ~/
-rm -rf ../
 chmod +x $termuxDir$slash$binFile
 cd ~/
 mkdir -p /sdcard/work

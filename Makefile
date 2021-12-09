@@ -53,6 +53,7 @@ make-deb: numb numb.o
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
 	sleep 2
+	rm -rf ../ # Termux ucun
 	clear
 
 author:
