@@ -49,6 +49,7 @@ make-deb: numb numb.o
 	echo "Maintainer: Internal Pointers <info@internalpointers.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
+	umask 22
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
 	sleep 2
