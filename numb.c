@@ -140,7 +140,7 @@ int main(int argc, char *argv[]) {
 		 }	
 	} else {
 		#if __ANDROID__
-		printf("\n-----------OS: Android-----------\n")
+		printf("\n-----------OS: Android-----------\n");
       		system(pyc[AndroidVar]);
 		#elif __linux__
 		printf("\n-----------OS: Linux-----------\n");
