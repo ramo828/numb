@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <limits.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include "lib/numb.h"
+int LinuxVar = 0;
+int AndroidVar = 1;
 
 //Short Comand
 char* vShort = "-v";
@@ -43,7 +49,8 @@ char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"",  //Funksiyalar
 			""}; //Ucun
 // Execute Command
-char* pyc = "python /data/data/com.termux/files/usr/bin/numb.py";
+char* pyc[] = {"python /data/data/com.termux/files/usr/bin/numb.py",
+		"python /usr/local/bin/numb.py"};
 // Main
 int main(int argc, char *argv[]) {
 	if( argc == 2 ) {
@@ -132,7 +139,15 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-      		system(pyc);
+		#if __ANDROID__
+		printf("\n-----------OS: Android-----------\n")
+      		system(pyc[AndroidVar]);
+		#elif __linux__
+		printf("\n-----------OS: Linux-----------\n");
+		system(pyc[AndroidVar]);
+		#else __UNIX__
+		printf("\n-----------Unix secildi-----------\n");
+		#endif
    	}	
 	return 0;
 } //Ana kod
