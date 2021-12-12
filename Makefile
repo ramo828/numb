@@ -43,7 +43,6 @@ else
 endif
 	# setup.py yaradildi
 	touch setup.py
-	umask 022
 	echo "#############################################################"
 	echo "from setuptools import setup" >> setup.py
 	echo "from Cython.Build import cythonize" >> setup.py
@@ -79,19 +78,18 @@ else
 	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
 	cp -r pyx $(DEB)$(PCBINPATH)
 endif
-	umask 022
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
 	echo "Package: $(DEB_NAME)" >> $(DEB)/DEBIAN/control
 	echo "Version: $(DEB_VERSION)" >> $(DEB)/DEBIAN/control
 	echo "Architecture: all" >> $(DEB)/DEBIAN/control
-	echo "Maintainer: Internal Pointers <info@internalpointers.com>" >> $(DEB)/DEBIAN/control
+	echo "Maintainer: RamoSoft <illegalism666@gmail.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
+	umask 22
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
 	sleep 2
-	#rm -rf ../ # Termux ucun
 	clear
 
 author:
