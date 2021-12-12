@@ -9,7 +9,7 @@
 #include "lib/numb.h"
 int LinuxVar = 1;
 int AndroidVar = 0;
-
+int Target = 0;
 //Short Comand
 char* vShort = "-v";
 char* uShort = "-u";
@@ -49,8 +49,8 @@ char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"",  //Funksiyalar
 			""}; //Ucun
 // Execute Command
-char* pyc[] = {"python /data/data/com.termux/files/usr/bin/numb.py",
-		"python /usr/local/bin/numb.py"};
+char* pyc[] = {"python /data/data/com.termux/files/usr/bin/numb.py", // 0
+		"python /usr/local/bin/numb.py"};                    // 1
 // Main
 int main(int argc, char *argv[]) {
 	if( argc == 2 ) {
@@ -141,13 +141,16 @@ int main(int argc, char *argv[]) {
 	} else {
 		#if __ANDROID__
 		printf("\n-----------OS: Android-----------\n");
-      		system(pyc[AndroidVar]);
+      		Target = AndroidVar;
 		#elif __linux__
 		printf("\n-----------OS: Linux-----------\n");
-		system(pyc[LinuxVar]);
+		Target = LinuxVar;
 		#else __UNIX__
 		printf("\n-----------Unix secildi-----------\n");
 		#endif
+		printf("\n%s\n",pyc[Target]);
+	        system(pyc[Target]);
+
    	}	
 	return 0;
 } //Ana kod
