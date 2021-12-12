@@ -79,6 +79,7 @@ else
 	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
 	cp -r pyx $(DEB)$(PCBINPATH)
 endif
+	umask 022
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
 	echo "Package: $(DEB_NAME)" >> $(DEB)/DEBIAN/control
@@ -87,7 +88,6 @@ endif
 	echo "Maintainer: Internal Pointers <info@internalpointers.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
-	umask 22
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
 	sleep 2
