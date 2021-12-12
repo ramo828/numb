@@ -43,6 +43,7 @@ else
 endif
 	# setup.py yaradildi
 	touch setup.py
+	umask 022
 	echo "#############################################################"
 	echo "from setuptools import setup" >> setup.py
 	echo "from Cython.Build import cythonize" >> setup.py
@@ -62,7 +63,6 @@ endif
 	echo "import pyx.bklib" >> numb.py
 	python setup.py build_ext --inplace
 	###################################################################
-	umask 22
 ifeq ($(type),android)
 	@echo Android
 	mv $(NAME) $(DEB)$(BINPATH)
