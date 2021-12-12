@@ -7,8 +7,8 @@
 #include <sys/stat.h>
 
 #include "lib/numb.h"
-int LinuxVar = 0;
-int AndroidVar = 1;
+int LinuxVar = 1;
+int AndroidVar = 0;
 
 //Short Comand
 char* vShort = "-v";
@@ -144,7 +144,7 @@ int main(int argc, char *argv[]) {
       		system(pyc[AndroidVar]);
 		#elif __linux__
 		printf("\n-----------OS: Linux-----------\n");
-		system(pyc[AndroidVar]);
+		system(pyc[LinuxVar]);
 		#else __UNIX__
 		printf("\n-----------Unix secildi-----------\n");
 		#endif
