@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define __VERSION_APP__  "1.8.4 beta"
+#define __VERSION_APP__  "1.8.5 stable"
 void update();
 void reInstall();
 void removeApp();
