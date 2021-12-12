@@ -62,6 +62,7 @@ endif
 	echo "import pyx.bklib" >> numb.py
 	python setup.py build_ext --inplace
 	###################################################################
+	umask 22
 ifeq ($(type),android)
 	@echo Android
 	mv $(NAME) $(DEB)$(BINPATH)
