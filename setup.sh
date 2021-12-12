@@ -47,6 +47,7 @@ sleep 2
 echo "${GREEN}"
 mkdir myPro
 cd myPro
+umask 022
 #--------------------------------------------------------------
 sleep 1
 yes | pkg upgrade
