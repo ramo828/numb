@@ -82,8 +82,7 @@ echo "#############################################################"
 echo "#RamoSoft" >> numb.py
 echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
-make all
-make make-deb
+make andro_cmp_ins
 mv *.deb ~/
 chmod +x $termuxDir$slash$binFile
 cd ~/

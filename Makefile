@@ -14,7 +14,12 @@ FUNC   = numb_func.o
 DEB_NAME = numb
 DEB_VERSION = 1.8.5
 
-all: pc
+all: pc_cmp_ins
+
+andro_cmp_ins: author numb numb.o yukle android temizle
+
+pc_cmp_ins: author pc temizle
+	sudo dpkg -i *.deb
 
 pc:
 	$(MAKE) type=PC make-deb
@@ -23,7 +28,7 @@ android:
 	$(MAKE) type=android make-deb
 
 
-make-deb: numb numb.o
+make-deb: author numb numb.o
 	rm $(DEB) -rf
 	mkdir $(DEB)
 	@echo $(type)
@@ -65,7 +70,6 @@ ifeq ($(type),android)
 	cp -r build/temp.linux* $(DEB)$(BINPATH)
 	cp -r pyx $(DEB)$(BINPATH)
 	mv *.deb ~/
-
 else
 	@echo PC
 	mv $(NAME) $(DEB)$(PCBINPATH)
