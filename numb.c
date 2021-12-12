@@ -144,13 +144,13 @@ int main(int argc, char *argv[]) {
       		Target = AndroidVar;
 		#elif __linux__
 		printf("\n-----------OS: Linux-----------\n");
+		mkDir(".config");
+                writeConfig("default.dir",get_homedir());
 		Target = LinuxVar;
 		#else __UNIX__
 		printf("\n-----------Unix secildi-----------\n");
 		#endif
-		printf("\n%s\n",pyc[Target]);
 	        system(pyc[Target]);
-
    	}	
 	return 0;
 } //Ana kod

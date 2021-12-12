@@ -78,6 +78,18 @@ char* getDir() {
 
 }
 
+char *get_homedir(void)
+{
+    char homedir[PATH_MAX];
+#ifdef _WIN32
+    snprintf(homedir, PATH_MAX, "%s%s", getenv("HOMEDRIVE"), getenv("HOMEPATH"));
+#else
+    snprintf(homedir, PATH_MAX, "%s", getenv("HOME"));
+#endif
+    return strdup(homedir);
+}
+
+
 void version() {
 	printf("Version %s-%s\n",__VERSION_APP__,__TIME__);
 	#if __ANDROID__

@@ -16,3 +16,4 @@ void phone();
 //Trinity end
 void mkDir(char* dir);
 void writeConfig(char* config, char* value);
+char *get_homedir(void);
