@@ -1,21 +1,41 @@
 CC     = gcc
 CFLAGS = -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels
 LIBS   = -lm
+##############################################
 NAME   = numb 
 PYFILE = numb.py
 BINPATH = /data/data/com.termux/files/usr/bin/
-DEBBINPATH = numb_1.8.3/usr/local/bin
-DEB = numb_1.8.3
+PCBINPATH = /usr/local/bin
+DEB = numb_1.8.5
 OUTBIN = numb.o
 CSOURCE = numb.c
 FUNC   = numb_func.o
+#############################################
+DEB_NAME = numb
+DEB_VERSION = 1.8.5
 
-all: yukle author numb numb.o temizle yukle
+all: pc
+
+pc:
+	$(MAKE) type=PC make-deb
+
+android:
+	$(MAKE) type=android make-deb
+
 
 make-deb: numb numb.o
 	rm $(DEB) -rf
-	mkdir numb_1.8.3
-	mkdir -p numb_1.8.3/usr/local/bin
+	mkdir $(DEB)
+	@echo $(type)
+ifeq ($(type),android)
+	@echo Android
+	mkdir -p $(DEB)$(BINPATH)
+	@echo Yaradildi
+else
+	@echo PC
+	mkdir -p $(DEB)$(PCBINPATH)
+	@echo Yaradildi
+endif
 	# setup.py yaradildi
 	touch setup.py
 	echo "#############################################################"
@@ -36,15 +56,28 @@ make-deb: numb numb.o
 	echo "import pyximport; pyximport.install()" >> numb.py
 	echo "import pyx.bklib" >> numb.py
 	python setup.py build_ext --inplace
-	mv $(NAME) $(DEBBINPATH)
-	mv $(PYFILE) $(DEBBINPATH)
-	cp -r build/lib.linux* $(DEBBINPATH)
-	cp -r build/temp.linux* $(DEBBINPATH)
-	cp -r pyx $(DEBBINPATH)
+	###################################################################
+ifeq ($(type),android)
+	@echo Android
+	mv $(NAME) $(DEB)$(BINPATH)
+	mv $(PYFILE) $(DEB)$(BINPATH)
+	cp -r build/lib.linux* $(DEB)$(BINPATH)
+	cp -r build/temp.linux* $(DEB)$(BINPATH)
+	cp -r pyx $(DEB)$(BINPATH)
+	mv *.deb ~/
+
+else
+	@echo PC
+	mv $(NAME) $(DEB)$(PCBINPATH)
+	mv $(PYFILE) $(DEB)$(PCBINPATH)
+	cp -r build/lib.linux* $(DEB)$(PCBINPATH)
+	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
+	cp -r pyx $(DEB)$(PCBINPATH)
+endif
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
-	echo "Package: Numb" >> $(DEB)/DEBIAN/control
-	echo "Version: 1.8.4" >> $(DEB)/DEBIAN/control
+	echo "Package: $(DEB_NAME)" >> $(DEB)/DEBIAN/control
+	echo "Version: $(DEB_VERSION)" >> $(DEB)/DEBIAN/control
 	echo "Architecture: all" >> $(DEB)/DEBIAN/control
 	echo "Maintainer: Internal Pointers <info@internalpointers.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
@@ -53,7 +86,7 @@ make-deb: numb numb.o
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
 	sleep 2
-	rm -rf ../ # Termux ucun
+	#rm -rf ../ # Termux ucun
 	clear
 
 author:
