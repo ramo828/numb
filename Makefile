@@ -13,6 +13,8 @@ FUNC   = numb_func.o
 #############################################
 DEB_NAME = numb
 DEB_VERSION = 1.8.5
+#############################################
+JAR = robo.jar
 
 all: pc_cmp_ins
 
@@ -29,6 +31,7 @@ android:
 
 
 make-deb: author numb numb.o
+
 	rm $(DEB) -rf
 	mkdir $(DEB)
 	@echo $(type)
@@ -77,6 +80,20 @@ else
 	cp -r build/lib.linux* $(DEB)$(PCBINPATH)
 	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
 	cp -r pyx $(DEB)$(PCBINPATH)
+	# Java Bot
+	javac extension/Robo.java extension/browser.java
+	rm robo MANIFEST.MF -rf
+	mkdir robo
+	mv extension/*.class robo/
+	echo "Manifest-Version: 1.0" >> MANIFEST.MF
+	echo "Ant-Version: Apache Ant 1.10.8"  >> MANIFEST.MF
+	echo "Created-By: 11.0.13+8-post-Debian-1 (Debian)"  >> MANIFEST.MF
+	echo "Class-Path: "  >> MANIFEST.MF
+	echo "X-COMMENT: Main-Class will be added automatically by build"  >> MANIFEST.MF
+	echo "Main-Class: robo.Robo"  >> MANIFEST.MF
+	jar cfm robo.jar MANIFEST.MF robo/*.class
+	pwd
+	mv $(JAR) $(DEB)$(PCBINPATH)
 endif
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
@@ -88,7 +105,7 @@ endif
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
 	umask 22
 	dpkg-deb --build --root-owner-group $(DEB)
-	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c
+	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c robo *.MF
 	sleep 2
 	clear
 
@@ -104,6 +121,7 @@ numb.o: numb.c
 
 temizle:
 	rm -f $(NAME) *.o
+	rm -f MANIFEST.MF
 
 yukle: $(NAME)
 	python setup.py build_ext --inplace

@@ -26,6 +26,15 @@ char* rmListFiles[100] = {
 "rm -rf /data/data/com.termux/files/usr/bin/pyx",
 "rm -rf .pyxbld"};
 
+char* rmListFilesLinux[100] = {
+"rm /usr/local/bin/numb",
+"rm /usr/local/bin/numb.py",
+"rm /usr/local/bin/bKey.data",
+"rm -rf .config",
+"rm -rf /usr/local/bin/build",
+"rm -rf /usr/local/bin/pyx",
+"rm -rf .pyxbld"};
+
 // Bilirəm daha qısa kod ilı bu işi həll etmək olardı ancaq tənbəllik elədim :)
 
 void update() {
@@ -47,7 +56,11 @@ void removeApp(){
 	if(ansver == 'y'){
 		for(int i = 0; i<=6; i++){
 			printf("%s\n",rmListFiles[i]);
+			#if __ANDROID__
 			system(rmListFiles[i]);
+			#elif __linux__
+                        system(rmListFilesLinux[i]);
+			#endif
 		}
 		printf("\n\t[Silindi]\n");
 	}
@@ -94,6 +107,7 @@ void version() {
 	printf("Version %s-%s\n",__VERSION_APP__,__TIME__);
 	#if __ANDROID__
 	printf(" Cihaz Android\n");
+	phone();
 	#elif __linux__
 	printf(" Cihaz Linux\n");
 	#elif __WIN32
@@ -107,7 +121,6 @@ void version() {
 	#else
 	printf(" Taninmayan cihaz\n");
 	#endif
-	phone();
 	code();
 }
 void writeKey(char* key) {

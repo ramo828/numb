@@ -22,6 +22,7 @@ char* rmShort = "-rm";
 char* stsShort = "-sts";
 char* reInstallShort = "-re";
 char* cnShort = "-cn";
+char* botShort = "-bot";
 // Long command
 char* vCommand = "--version";
 char* upCommand = "--update";
@@ -35,6 +36,7 @@ char* stsCommand = "--status";
 char* reInstallCommand = "--reinstall";
 char* trinityCommand[] = {"phone","code","author"};
 char* cnCommand = "--contactName";
+char* robotCommand = "--robot";
 // Message
 char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"\tHaqqında [numb --help]\n",
@@ -53,6 +55,20 @@ char* pyc[] = {"python /data/data/com.termux/files/usr/bin/numb.py", // 0
 		"python /usr/local/bin/numb.py"};                    // 1
 // Main
 int main(int argc, char *argv[]) {
+	
+		#if __ANDROID__
+                printf("\n-----------OS: Android-----------\n");
+                Target = AndroidVar;
+                #elif __linux__
+                printf("\n-----------OS: Linux-----------\n");
+                mkDir(".config");
+                writeConfig("default.dir",get_homedir());
+                Target = LinuxVar;
+                #else __UNIX__
+                printf("\n-----------Unix secildi-----------\n");
+                #endif
+
+
 	if( argc == 2 ) {
 	      	if(!strcmp(upCommand,argv[1]) | !strcmp(uShort,argv[1])){
                               	update();
@@ -87,6 +103,15 @@ int main(int argc, char *argv[]) {
 		}
 		else if(!strcmp(cnCommand,argv[1]) | !strcmp(cnShort,argv[1])){
                         printf("\nXətalı əmr!\n numb --contactName ad");
+                }
+		 else if(!strcmp(robotCommand,argv[1]) | !strcmp(botShort,argv[1])){
+			if(Target == 1){
+                        printf("\nBot Çalısdırılır...");
+			system("java -jar /usr/local/bin/robo.jar");
+		}
+			else {
+				printf("\nMobil cihaz dəstəklənmir\n");
+			}
                 }
 
 		else {
@@ -139,17 +164,6 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-		#if __ANDROID__
-		printf("\n-----------OS: Android-----------\n");
-      		Target = AndroidVar;
-		#elif __linux__
-		printf("\n-----------OS: Linux-----------\n");
-		mkDir(".config");
-                writeConfig("default.dir",get_homedir());
-		Target = LinuxVar;
-		#else __UNIX__
-		printf("\n-----------Unix secildi-----------\n");
-		#endif
 	        system(pyc[Target]);
    	}	
 	return 0;
