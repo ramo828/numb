@@ -34,7 +34,7 @@ public class Robo {
     
     public static void main(String[] args) {
        
-        auto.setSourceData("https://raw.githubusercontent.com/ramo828/numb/main/setup.sh");
+        auto.setSourceData("https://raw.githubusercontent.com/ramo828/numb/main/extension/message");
         auto.setAlgoStatus(true);
         try {
             yaz("\n\t-------------------------\n");
