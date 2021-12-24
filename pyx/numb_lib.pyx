@@ -3,7 +3,7 @@ import os
 import time as tm
 import requests
 from bs4 import BeautifulSoup as soup
-from os import environ
+from kivy.utils import platform
 
 #######################################################################################
 #######################################VARIABLE########################################
@@ -266,7 +266,7 @@ def outputInfo():
 def keyReadFile():
     global bKeyDefault
     global binPath
-    if 'ANDROID_BOOTLOGO' in environ:
+    if(platform == "android"):
         binPath = "/data/data/com.termux/files/usr/bin/"
     else:
         binPath = "/usr/local/bin/"
