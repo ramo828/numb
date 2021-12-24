@@ -12,7 +12,8 @@ char* upc = "sudo apt-get update";
 char* termuxCommand = "termux-setup-storage && mkdir -p /sdcard/work/";
 char* upAllApps = "yes | pkg install git make python wget termux* *-repo -y";
 char* upGrade = "yes | apt-get upgrade -y && apt-get dist-upgrade -y && pkg update -y";
-char* exec = "mv *.data /data/data/com.termux/files/usr/bin/";
+char* execAndroid = "mv *.data /data/data/com.termux/files/usr/bin/";
+char* execLinux = "mv *.data /usr/local/bin/";
 char* reInstallExec = "curl https://raw.githubusercontent.com/ramo828/numb/main/setup.sh | dash - ";
 char bKeyBegin[255] = "Bearer ";
 char configPath[255] = ".config/";
@@ -124,10 +125,16 @@ void version() {
 	code();
 }
 void writeKey(char* key) {
-	FILE *keyFile = fopen("bKey.data","w");
+	FILE *keyFile;
+	if((keyFile = fopen("bKey.data","w"))){
 	fprintf(keyFile, "%s",strcat(bKeyBegin,key));
-	fclose(keyFile);
-	system(exec);
+        fclose(keyFile);
+        #if __ANDROID__
+        system(execAndroid);
+        #elif __linux__
+        system(execLinux);
+        #endif
+	}
 }
 
 

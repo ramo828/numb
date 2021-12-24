@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
                 mkDir(".config");
                 writeConfig("default.dir",get_homedir());
                 Target = LinuxVar;
-                #else __UNIX__
+                #elif __UNIX__
                 printf("\n-----------Unix secildi-----------\n");
                 #endif
 

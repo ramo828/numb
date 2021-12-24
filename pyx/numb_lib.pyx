@@ -3,6 +3,7 @@ import os
 import time as tm
 import requests
 from bs4 import BeautifulSoup as soup
+from os import environ
 
 #######################################################################################
 #######################################VARIABLE########################################
@@ -19,7 +20,7 @@ categoryKey = "sadə"
 begin = 0                      # Baslangic 
 end = 0
 reverseValue = 0
-termuxBinPath = "/home/ramo828/Belgeler/myProjects/numb/"
+BinPath = ""
 dataVcard = [
  "BEGIN:VCARD\n"
 ,"N:","FN:"
@@ -263,15 +264,19 @@ def outputInfo():
 
 def keyReadFile():
     global bKeyDefault
+    if 'ANDROID_BOOTLOGO' in environ:
+        BinPath = "/data/data/com.termux/files/usr/bin/"
+    else:
+        BinPath = "/usr/local/bin/"
     os.system("clear")
-    if(os.path.exists(termuxBinPath+"bKey.data")):
-        bFile = open(termuxBinPath+"bKey.data","r")
+    if(os.path.exists(BinPath+"bKey.data")):
+        bFile = open(BinPath+"bKey.data","r")
         print("#####External key selected#####")
         bKeyDefault = bFile.read()
         return bKeyDefault
     else:
         print("#####Default key selected#####")
-        print(os.path.exists(termuxBinPath+"bKey.data"))
+        print(os.path.exists(BinPath+"bKey.data"))
         return str(bKeyDefault)
 
 
