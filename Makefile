@@ -57,6 +57,11 @@ endif
 	echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
 	echo "    compiler_directives={'language_level' : 3}" >> setup.py
 	echo ")"  >> setup.py
+	echo "setup(" >> setup.py
+	echo "    ext_modules = cythonize(\"pyx/statistic.pyx\")," >> setup.py
+	echo "    compiler_directives={'language_level' : 3}" >> setup.py
+	echo ")"  >> setup.py
+
 	# numb.py yaradilir
 	touch numb.py
 	echo "#############################################################"

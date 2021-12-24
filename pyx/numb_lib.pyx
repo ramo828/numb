@@ -4,6 +4,7 @@ import time as tm
 import requests
 from bs4 import BeautifulSoup as soup
 import subprocess
+import json
 
 #######################################################################################
 #######################################VARIABLE########################################
@@ -311,15 +312,37 @@ def prefixDef():
 
 
 
-def conBakcell():
+def conBakcell(page):
     r = requests.get(url, params={"prefix":prefixSel[prefixValue],
     "msisdn":number,                                        # Nomre datasi
     "categoryId":category[categoryKey],                     # Kategorya
     "showReserved":"true",                                  # Sifaris verilenler
-    "size":max,                                             # Maksimum nomre sayi
+    "size":"2000",                                          # Maksimum nomre sayi
     "page":page},                                           # Maksimum sehife sayi
     headers=headers)                                        # Header
     return r
+
+######################################################################################
+###################################BakcellStatistic###################################
+def loadTotal():
+    totalNumb = ""
+    r = conBakcell(0)
+    totalJSON = json.loads(r.text);
+    for tData in totalJSON:
+        totalNumb = (tData["totalElements"])
+    return totalNumb
+
+
+def loadData(page):
+    r = conBakcell(page)
+    dataFour = ""
+    dataTwo = ""
+    data = json.loads(r.text);
+    for i in data:
+        dataTwo = (i["freeMsisdnList"])
+    for i2 in dataTwo:
+        dataFour = dataFour+str(i2["msisdn"])+"\n"
+    return dataFour
 
 
 ######################################################################################

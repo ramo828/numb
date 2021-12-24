@@ -11,13 +11,16 @@ import time as tm                                            # Lib
 import numb_lib as nl
 import os
 import warnings
+from tqdm import tqdm
+import math
+
 ############################################################################
+contactName = ""
 if len(nl.readConfig("contact.name")) > 0:
     contactName = nl.readConfig("contact.name") 
 else:
     contactName = "Metros"
 dataTwo = "";                                               # Data 2
-dataThree = "";                                             # Data 3
 count = 0;                                                  # Saygac
 prefixValue = 0;                                            # Default deyer 0
 end = 0
@@ -36,7 +39,7 @@ def aRun():
     nl.numb_run(number)
     new_data = nl.sum_data()
     for pre in range(nl.getAzBegin(),nl.getAzEnd()):
-        for n in new_data.split("\n"):
+        for n in tqdm(new_data.split("\n")):
             dataFour = n
             nl.vcardWrite(w,                                # Vcard skelet
             contactName,                                    # Kontakt adi
@@ -52,6 +55,9 @@ def aRun():
 def bRun():
     global count
     global end
+    global dataTwo
+    totalElements = math.ceil(nl.loadTotal()/2000)          # Sehife sayi
+    rawTotalElement = nl.loadTotal()                        # Nomre sayi
     nl.AI_Select()                                          # Kategoriyalari daxil edin
     prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
     categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
@@ -60,20 +66,17 @@ def bRun():
     end = nl.getIndex(1)                                    # Nomre son (araliq)
     reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
     prefix = nl.prefixDef()                                 # Prefix deyiskeni
-    r = nl.conBakcell()                                     # Request data
-    data = json.loads(r.text);                              # Json load data 1
-    for i in data:                                          # Json datasini parcala
-        dataTwo = (i["freeMsisdnList"])                     # Json List freeMsisdnList ayir
-    for pre in range(begin, end):                           # Nomre araligi 0-5
-        for i2 in dataTwo:                                  # freeMsisdnList listdeki melumatlari ayir
-            dataFour = str(i2["msisdn"]);                   # Load data 2
-            nl.vcardWrite(w,                                # Vcard skelet
-            contactName,                                    # Kontakt adi
-            prefix,                                         # Prefix
-            pre,                                            # Prefix Araligi
-            dataFour,                                       # Yekun data
-            count)                                          # Kontaktin ad ardicilligi
+    for allNumber in range(totalElements):
+        os.system("clear")
+        print("Biraz gozleyin...\n")
+        print("Sehife sayi: "+str(totalElements)+"\nNomre sayi: "+str(rawTotalElement))
+        dataTwo +=nl.loadData(allNumber)
+    
+    for pre in tqdm(range(begin,end)):
+        for dataTree in tqdm(dataTwo.split("\n")):
+            nl.vcardWrite(w,contactName,prefix,pre,dataTree,count)
             count=count+1
+
 
 ##############################################################################
 ##############################APP_RUN#########################################
