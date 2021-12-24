@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as soup
 
 #######################################################################################
 #######################################VARIABLE########################################
-bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQwMjE0NjAxfQ.eNQhBoIjyiUy1ZUbaSvuGb6Gxf_668ZetfPOBV3WQNtlim9kgsP2nDM8ej2KCd5-ue1O8BnjnCZz_aP6LN70Rw"
+bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
 ddir = "/sdcard/work/"
 number = "xxxxx"               # Null data protected
