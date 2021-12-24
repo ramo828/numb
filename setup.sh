@@ -60,6 +60,7 @@ pip install Cython
 pip install --upgrade pip setuptools
 pip install bs4
 pip install --upgrade pip
+pip install tqdm
 clear
 git clone $url$slash$comFile
 cd numb
