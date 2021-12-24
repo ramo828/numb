@@ -3,7 +3,7 @@ import os
 import time as tm
 import requests
 from bs4 import BeautifulSoup as soup
-from kivy.utils import platform
+import subprocess
 
 #######################################################################################
 #######################################VARIABLE########################################
@@ -266,7 +266,7 @@ def outputInfo():
 def keyReadFile():
     global bKeyDefault
     global binPath
-    if(platform == "android"):
+    if(subprocess.check_output(['uname', '-o']).strip() == b'Android'):
         binPath = "/data/data/com.termux/files/usr/bin/"
     else:
         binPath = "/usr/local/bin/"
