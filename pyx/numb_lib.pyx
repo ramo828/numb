@@ -20,7 +20,7 @@ categoryKey = "sadə"
 begin = 0                      # Baslangic 
 end = 0
 reverseValue = 0
-BinPath = ""
+binPath = ""
 dataVcard = [
  "BEGIN:VCARD\n"
 ,"N:","FN:"
@@ -49,6 +49,7 @@ azBegin = 0
 azEnd = int(len(prefixGlo))
 azIndex = 3                                             # 010 nomre
 configData = ""
+binPath = "" 
 #######################################################################################
 ######################################ORTAQ############################################
 
@@ -264,19 +265,22 @@ def outputInfo():
 
 def keyReadFile():
     global bKeyDefault
+    global binPath
     if 'ANDROID_BOOTLOGO' in environ:
-        BinPath = "/data/data/com.termux/files/usr/bin/"
+        binPath = "/data/data/com.termux/files/usr/bin/"
     else:
-        BinPath = "/usr/local/bin/"
+        binPath = "/usr/local/bin/"
+	
     os.system("clear")
-    if(os.path.exists(BinPath+"bKey.data")):
-        bFile = open(BinPath+"bKey.data","r")
+    print(binPath)
+
+    if(os.path.exists(binPath+"bKey.data")):
+        bFile = open(binPath+"bKey.data","r")
         print("#####External key selected#####")
         bKeyDefault = bFile.read()
         return bKeyDefault
     else:
         print("#####Default key selected#####")
-        print(os.path.exists(BinPath+"bKey.data"))
         return str(bKeyDefault)
 
 
