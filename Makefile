@@ -111,15 +111,17 @@ else
 	pwd
 	mv $(JAR) $(DEB)$(PCBINPATH)
 endif
+	umask 22
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
+	umask 22
 	echo "Package: $(DEB_NAME)" >> $(DEB)/DEBIAN/control
 	echo "Version: $(DEB_VERSION)" >> $(DEB)/DEBIAN/control
 	echo "Architecture: all" >> $(DEB)/DEBIAN/control
 	echo "Maintainer: RamoSoft <illegalism666@gmail.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
-	umask 022
+	umask 22
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c robo *.MF
 	sleep 2
