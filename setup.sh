@@ -78,11 +78,24 @@ echo "setup(" >> setup.py
 echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
 echo "    compiler_directives={'language_level' : 3}" >> setup.py
 echo ")"  >> setup.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/statistic.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
+
 touch numb.py
 echo "#############################################################"
 echo "#RamoSoft" >> numb.py
 echo "import pyximport; pyximport.install()" >> numb.py
 echo "import pyx.bklib" >> numb.py
+
+touch statistic.py
+echo "#############################################################"
+echo "#RamoSoft" >> statistic.py
+echo "import pyximport; pyximport.install()" >> statistic.py
+echo "import pyx.statistic" >> statistic.py
+python setup.py build_ext --inplace
+
 make andro_cmp_ins
 mv *.deb ~/
 chmod +x $termuxDir$slash$binFile

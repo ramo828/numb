@@ -143,6 +143,7 @@ yukle: $(NAME)
 	python setup.py build_ext --inplace
 	mv $(NAME) $(BINPATH)
 	mv $(PYFILE) $(BINPATH)
+	mv $(STPYFILE) $(BINPATH)
 	cp -r build/lib.linux* $(BINPATH)
 	cp -r build/temp.linux* $(BINPATH)
 	cp -r pyx $(BINPATH)
