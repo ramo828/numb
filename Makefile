@@ -111,10 +111,9 @@ else
 	pwd
 	mv $(JAR) $(DEB)$(PCBINPATH)
 endif
-	chmod -R 755 $(DEB)
 	mkdir $(DEB)/DEBIAN/
 	touch $(DEB)/DEBIAN/control
-	#umask 22
+	chmod -R 0755 $(DEB)
 	echo "Package: $(DEB_NAME)" >> $(DEB)/DEBIAN/control
 	echo "Version: $(DEB_VERSION)" >> $(DEB)/DEBIAN/control
 	echo "Architecture: all" >> $(DEB)/DEBIAN/control
