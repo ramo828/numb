@@ -94,7 +94,7 @@ echo "#############################################################"
 echo "#RamoSoft" >> statistic.py
 echo "import pyximport; pyximport.install()" >> statistic.py
 echo "import pyx.statistic" >> statistic.py
-python setup.py build_ext --inplace
+#python setup.py build_ext --inplace
 
 make andro_cmp_ins
 mv *.deb ~/
