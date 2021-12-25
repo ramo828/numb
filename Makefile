@@ -4,6 +4,7 @@ LIBS   = -lm
 ##############################################
 NAME   = numb 
 PYFILE = numb.py
+STPYFILE = statistic.py
 BINPATH = /data/data/com.termux/files/usr/bin/
 PCBINPATH = /usr/local/bin
 DEB = numb_1.8.5
@@ -69,11 +70,20 @@ endif
 	echo "import pyximport; pyximport.install()" >> numb.py
 	echo "import pyx.bklib" >> numb.py
 	python setup.py build_ext --inplace
+	# Statistic mode
+	touch statistic.py
+	echo "#############################################################"
+	echo "#RamoSoft" >> statistic.py
+	echo "import pyximport; pyximport.install()" >> statistic.py
+	echo "import pyx.statistic" >> statistic.py
+	python setup.py build_ext --inplace
+
 	###################################################################
 ifeq ($(type),android)
 	@echo Android
 	mv $(NAME) $(DEB)$(BINPATH)
 	mv $(PYFILE) $(DEB)$(BINPATH)
+	mv $(STPYFILE) $(DEB)$(BINPATH)
 	cp -r build/lib.linux* $(DEB)$(BINPATH)
 	cp -r build/temp.linux* $(DEB)$(BINPATH)
 	cp -r pyx $(DEB)$(BINPATH)
@@ -82,6 +92,7 @@ else
 	@echo PC
 	mv $(NAME) $(DEB)$(PCBINPATH)
 	mv $(PYFILE) $(DEB)$(PCBINPATH)
+	mv $(STPYFILE) $(DEB)$(PCBINPATH)
 	cp -r build/lib.linux* $(DEB)$(PCBINPATH)
 	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
 	cp -r pyx $(DEB)$(PCBINPATH)

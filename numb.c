@@ -23,7 +23,9 @@ char* stsShort = "-sts";
 char* reInstallShort = "-re";
 char* cnShort = "-cn";
 char* botShort = "-bot";
+char* statShort = "-stat";
 // Long command
+char* statCommand = "--statistic";
 char* vCommand = "--version";
 char* upCommand = "--update";
 char* hCommand = "--help";
@@ -53,6 +55,8 @@ char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 // Execute Command
 char* pyc[] = {"python /data/data/com.termux/files/usr/bin/numb.py", // 0
 		"python /usr/local/bin/numb.py"};                    // 1
+char* pyst[] = {"python /data/data/com.termux/files/usr/bin/statistic.py",
+		"python /usr/local/bin/statistic.py"};
 // Main
 int main(int argc, char *argv[]) {
 	
@@ -72,6 +76,9 @@ int main(int argc, char *argv[]) {
 	if( argc == 2 ) {
 	      	if(!strcmp(upCommand,argv[1]) | !strcmp(uShort,argv[1])){
                               	update();
+		}
+		else if(!strcmp(statCommand,argv[1]) | !strcmp(statShort,argv[1])){
+				system(pyst[Target]);
 		}
 		else if(!strcmp(hCommand,argv[1]) | !strcmp(hShort,argv[1])){
                               printf("%s %s %s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7],hm[8]);

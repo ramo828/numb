@@ -1,7 +1,4 @@
 import numb_lib as nl
-
-
-
 import json
 import requests
 import os.path
@@ -9,8 +6,21 @@ import math
 from tqdm import tqdm
 import os
 import time as tm
-
-key = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
+category = dict()
+categoryKey = "sadə";          # Sade Nomreleri
+category["sadə"] = "1429263300716842758";               # Sade key
+category["xüsusi1"] = "1579692503636523114";            # Xususi1 key
+category["xüsusi2"] = "1579692547752973099";            # Xususi2 key
+categoryKey055 = "sadə"        # 099 sade nomreler
+#------------------099----------------------------
+category["sadə099"] = "1574940031138475856";            # Sade key
+category["bürünc"] = "1582551518546595643";             # Burunc key
+category["gümüş"] = "1582551485948558941";              # Gumus key
+category["qızıl"] = "1582551461421619154";              # Qizil key
+category["platin"] = "1582551437850968791";             # Platin key
+categoryKey099 = "bürünc"                               # Buruc nomreler
+# key = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
+key = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQyMTE4MjA2fQ.HUJrHKJc2bonr7njVz0IJzvfMSqvICl777yh_SbGh_AxcHUmNAi0lPa0IkpN5TwXhRpxbXQVQBa4T4Dxt5EpBg"
 headers = {'content-type': 'application/json, text/plain, */*',          # Content type json
 'Accept':'application/json, text/plain, */*',                            # Accept type json
 'Accept-Encoding':'gzip, deflate, br',                                   # Encoding gzip compressed data
@@ -20,12 +30,18 @@ headers = {'content-type': 'application/json, text/plain, */*',          # Conte
 url = "https://public-api.azerconnect.az/msbkcposappreservation/api/freemsisdn-nomre/search";
 
 stopFlag = True
-number = "574xxx4"
 nameFile = ""
 new = ""
 tip = 1
-choise = 0
 sharp = ""
+
+choise = int(input("\n\t0 - Yükləmə modu\n\t1 - Analiz modu\n>> "))
+tip = int(input("\n\t0 - Köhnə data \n\t1 - Yeni data\n >> "))
+number = nl.quest1()                                    # Nomreni daxil edin
+nl.AI_Select()                                          # Kategoriyalari daxil edin
+prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
+categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
+prefix = nl.prefixDef()                                 # Prefix deyiskeni
 
 def File(file,appendMode):
     try:
@@ -54,22 +70,12 @@ def calcData():
 
 def loadTotal():
     totalNumb = ""
-    r = requests.get(url, params={"prefix":"55","msisdn":number,"categoryId":"1429263300716842758","showReserved":"true","language":"AZ"}, headers=headers)
+    r = requests.get(url, params={"prefix":prefix,"msisdn":number,"categoryId":category[categoryKey],"showReserved":"true","language":"AZ"}, headers=headers)
     totalJSON = json.loads(r.text);
     for tData in totalJSON:
         totalNumb = (tData["totalElements"])
     return totalNumb
 
-def loadData(page):
-    r = requests.get(url, params={"prefix":"55","msisdn":number,"categoryId":"1429263300716842758","showReserved":"true","language":"AZ","page":page,"size":"2000"}, headers=headers)
-    dataFour = ""
-    dataTwo = ""
-    data = json.loads(r.text);
-    for i in data:
-        dataTwo = (i["freeMsisdnList"])
-    for i2 in dataTwo:
-        dataFour = dataFour+str(i2["msisdn"])+"\n"
-    return dataFour
             
 
 def dlData():
@@ -91,7 +97,7 @@ def dlData():
         print("Biraz gozleyin...\n")
         print("Sehife sayi: "+str(totalElements)+"\nNomre sayi: "+str(rawTotalElement))
         print(sharp)
-        new +=loadData(cevir)                                   # Tapilan sehifedeki umumi nomreler
+        new +=nl.loadData(cevir)                                   # Tapilan sehifedeki umumi nomreler
     f.write(new)
     f.close()
 if(choise == 0):
