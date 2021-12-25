@@ -19,7 +19,7 @@ JAR = robo.jar
 
 all: pc_cmp_ins
 
-andro_cmp_ins: author numb numb.o android yukle temizle
+andro_cmp_ins: author numb numb.o yukle android temizle
 
 pc_cmp_ins: author pc temizle
 	sudo dpkg -i *.deb
@@ -69,12 +69,14 @@ endif
 	echo "#RamoSoft" >> numb.py
 	echo "import pyximport; pyximport.install()" >> numb.py
 	echo "import pyx.bklib" >> numb.py
+	python setup.py build_ext --inplace
 	# Statistic mode
 	touch statistic.py
 	echo "#############################################################"
 	echo "#RamoSoft" >> statistic.py
 	echo "import pyximport; pyximport.install()" >> statistic.py
 	echo "import pyx.statistic" >> statistic.py
+	python setup.py build_ext --inplace
 
 	###################################################################
 ifeq ($(type),android)
@@ -85,7 +87,7 @@ ifeq ($(type),android)
 	cp -r build/lib.linux* $(DEB)$(BINPATH)
 	cp -r build/temp.linux* $(DEB)$(BINPATH)
 	cp -r pyx $(DEB)$(BINPATH)
-#	mv *.deb ~/
+	mv *.deb ~/
 else
 	@echo PC
 	mv $(NAME) $(DEB)$(PCBINPATH)
@@ -141,7 +143,6 @@ yukle: $(NAME)
 	python setup.py build_ext --inplace
 	mv $(NAME) $(BINPATH)
 	mv $(PYFILE) $(BINPATH)
-	mv $(STPYFILE) $(BINPATH)
 	cp -r build/lib.linux* $(BINPATH)
 	cp -r build/temp.linux* $(BINPATH)
 	cp -r pyx $(BINPATH)
