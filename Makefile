@@ -7,7 +7,7 @@ PYFILE = numb.py
 STPYFILE = statistic.py
 BINPATH = /data/data/com.termux/files/usr/bin/
 PCBINPATH = /usr/local/bin
-DEB = numb_1.8.5
+DEB = numb_1.9.0
 OUTBIN = numb.o
 CSOURCE = numb.c
 FUNC   = numb_func.o
@@ -119,7 +119,7 @@ endif
 	echo "Maintainer: RamoSoft <illegalism666@gmail.com>" >> $(DEB)/DEBIAN/control
 	echo "Description: Bakcell && Azercell Tools" >> $(DEB)/DEBIAN/control
 	echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> $(DEB)/DEBIAN/control
-	umask 22
+	umask 022
 	dpkg-deb --build --root-owner-group $(DEB)
 	rm -rf *cpython* build .config $(DEB) *.o setup.py pyx/*.c robo *.MF
 	sleep 2
@@ -143,6 +143,8 @@ yukle: $(NAME)
 	python setup.py build_ext --inplace
 	mv $(NAME) $(BINPATH)
 	mv $(PYFILE) $(BINPATH)
+	# elAVE
+	mv $(STPYFILE) $(BINPATH)
 	cp -r build/lib.linux* $(BINPATH)
 	cp -r build/temp.linux* $(BINPATH)
 	cp -r pyx $(BINPATH)
