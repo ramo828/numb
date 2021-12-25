@@ -13,13 +13,13 @@ CSOURCE = numb.c
 FUNC   = numb_func.o
 #############################################
 DEB_NAME = numb
-DEB_VERSION = 1.8.5
+DEB_VERSION = 1.9.0
 #############################################
 JAR = robo.jar
 
 all: pc_cmp_ins
 
-andro_cmp_ins: author numb numb.o yukle android temizle
+andro_cmp_ins: author numb numb.o android yukle temizle
 
 pc_cmp_ins: author pc temizle
 	sudo dpkg -i *.deb
@@ -69,14 +69,12 @@ endif
 	echo "#RamoSoft" >> numb.py
 	echo "import pyximport; pyximport.install()" >> numb.py
 	echo "import pyx.bklib" >> numb.py
-	python setup.py build_ext --inplace
 	# Statistic mode
 	touch statistic.py
 	echo "#############################################################"
 	echo "#RamoSoft" >> statistic.py
 	echo "import pyximport; pyximport.install()" >> statistic.py
 	echo "import pyx.statistic" >> statistic.py
-	python setup.py build_ext --inplace
 
 	###################################################################
 ifeq ($(type),android)
