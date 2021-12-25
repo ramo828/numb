@@ -87,7 +87,7 @@ ifeq ($(type),android)
 	cp -r build/lib.linux* $(DEB)$(BINPATH)
 	cp -r build/temp.linux* $(DEB)$(BINPATH)
 	cp -r pyx $(DEB)$(BINPATH)
-	mv *.deb ~/
+	#mv *.deb ~/
 else
 	@echo PC
 	mv $(NAME) $(DEB)$(PCBINPATH)
