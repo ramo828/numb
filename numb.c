@@ -127,6 +127,24 @@ int main(int argc, char *argv[]) {
 
    	}
    	else if( argc > 2 ) {
+
+
+
+
+		if(!strcmp(robotCommand,argv[1]) | !strcmp(botShort,argv[1])){
+			if(!strcmp("min",argv[2])){
+				printf("Mesaj 2 seçildi\n");
+				if(Target == 1){
+                        	printf("\nBot Çalısdırılır...");
+                        	system("java -jar /usr/local/bin/robo.jar min");
+                	}
+                        	else {
+                                	printf("\nMobil cihaz dəstəklənmir\n");
+                        	}
+			}
+		
+		}
+
     		if(!strcmp(kCommand,argv[1]) | !strcmp(kShort,argv[1])){
 			printf("KEY: %s\n", argv[2]);
 			writeKey(argv[2]);
