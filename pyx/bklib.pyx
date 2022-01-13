@@ -13,8 +13,11 @@ import os
 import warnings
 from tqdm import tqdm
 import math
+from datetime import datetime
 
 ############################################################################
+
+
 contactName = ""
 if len(nl.readConfig("contact.name")) > 0:
     contactName = nl.readConfig("contact.name") 
@@ -74,7 +77,8 @@ def bRun():
     
     for pre in tqdm(range(begin,end)):
         for dataTree in tqdm(dataTwo.split("\n")):
-            nl.vcardWrite(w,contactName,prefix,pre,dataTree,count)
+            # nl.vcardWrite(w,contactName,prefix,pre,dataTree,count)
+            nl.fileWrite(w,dataTree+"\n")
             count=count+1
 
 
@@ -100,23 +104,49 @@ if(status == 1):
     operator = int(input(">> "))
 else:
     operator = 0
-if(operator == 0):
-    print("\n\tBAKCELL\n")
-    number = nl.quest1()                                    # Nomreni daxil edin
-    bRun()
-    nl.banBegin()
-    nl.banEnd(count,end)
-elif(operator == 1):
-   azEnd = nl.getAzEnd()
-   print(azEnd)
-   print("\n\tAZƏRCELL\n")
-   number = nl.quest1()                                    # Nomreni daxil edin
-   aRun()
-   nl.banBegin()
-   nl.banEnd(count,azEnd)
-else:
-   print("Bilinməyən əmr!")
+day = ["Ba","Cb","Dc","Ed","Fe","Gf","Hg","Jh","Kj","Lk",
+         "Ml","Nm","On","Po","Qp","Rq","Sr","Ts","Ut","Vu"
+        "Yx","Zy","0z","1y","2x","3v","4u","5t","6s","7r","8q"]
 
+hour = ["%$","!@","~$","@&","+?","><","*&","#%","!#","&!",
+        "Ra","Mi","ZB","Er","iL","An","kA","rA","sh","eK",
+        "iA","zE","Rb","CN"]
+minute = [
+    	"aZ","bW","cX","dY","eV","fU","gT","hS","jR","Qk",
+        "Pl","mI","nH","oG","pJ","qK","rL","sO","tN","uM", 
+        "vF","xE","yD","zC","wB","&A","%B","$C","@D","!E", 
+        "~F","?G",",H",">I","<J","00","08","07","04","03", 
+        "20","14","19","70","74","01","02","09","10","11", 
+        "12","99","88","77","66","55","44","33","22","11"
+]
+dtm  = datetime.now()
+dday = dtm.day
+dhour = dtm.hour
+dminute = dtm.minute
+passw = day[dday]+hour[dhour]+minute[dminute]
+
+print("Key'i daxil edin: ")
+key = input(">> ")
+if(key == passw):
+    print("Key doğru daxil edilib\n\n")
+    if(operator == 0):
+        print("\n\tBAKCELL\n")
+        number = nl.quest1()                                    # Nomreni daxil edin
+        bRun()
+        nl.banBegin()
+        nl.banEnd(count,end)
+    elif(operator == 1):
+        azEnd = nl.getAzEnd()
+        print(azEnd)
+        print("\n\tAZƏRCELL\n")
+        number = nl.quest1()                                    # Nomreni daxil edin
+        aRun()
+        nl.banBegin()
+        nl.banEnd(count,azEnd)
+    else:
+        print("Bilinməyən əmr!")
+else:
+    print("Key dogru deyil")
 
 ##############################################################################
 print(nl.readConfig(nl.getFP(0))+nl.getFP(1))
