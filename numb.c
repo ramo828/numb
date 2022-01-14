@@ -39,6 +39,7 @@ char* reInstallCommand = "--reinstall";
 char* trinityCommand[] = {"phone","code","author"};
 char* cnCommand = "--contactName";
 char* robotCommand = "--robot";
+char* keyFile = "data.key";
 // Message
 char* hm[100] = {"\n\t### Created by Mammadli Ramiz ###\n\n",
 			"\tHaqqında [numb --help]\n",
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]) {
 			version();
 		}
 		else if(!strcmp("busted",argv[1]) | !strcmp("busted",argv[1]) ) {
-                        writeConfig("data.key","busted");
+                        system("touch .config/data.key && echo 'busted' >> data.key");
                 }
 
 	       	else if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1]) ) {

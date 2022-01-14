@@ -137,11 +137,21 @@ void writeKey(char* key) {
 	}
 }
 
+void keyPass(char* config, char* value) {
+	if(config != NULL && value != NULL){
+        FILE *rk = fopen(strcat(configPath,config),"w");
+        fprintf(rk, "%s",value);
+        fclose(rk);
+	}
+}
+
 
 void writeConfig(char* config, char* value) {
+	if(config != NULL && value != NULL){
         FILE *confFile = fopen(strcat(configPath,config),"w");
         fprintf(confFile, "%s",value);
         fclose(confFile);
+	}
 }
 
 void reInstall(){

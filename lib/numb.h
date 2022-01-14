@@ -14,6 +14,7 @@ void author();
 void code();
 void phone();
 //Trinity end
+void keyPass(char* config, char* value);
 void mkDir(char* dir);
 void writeConfig(char* config, char* value);
 char *get_homedir(void);
