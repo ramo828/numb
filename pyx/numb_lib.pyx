@@ -11,7 +11,7 @@ import json
 # bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
 bKeyDefault ="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQyMTE4MjA2fQ.HUJrHKJc2bonr7njVz0IJzvfMSqvICl777yh_SbGh_AxcHUmNAi0lPa0IkpN5TwXhRpxbXQVQBa4T4Dxt5EpBg"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
-ddir = "/home/ramo828/"#"/sdcard/work/"
+ddir = "/sdcard/work/"
 number = "xxxxx"               # Null data protected
 err = 0;                       # Xeta
 path = "default.dir"           # Export edilecek qovluq
