@@ -5,6 +5,7 @@
 # |____|_  /(____  /__|_|  /\____/_______  /\_______  /\___  /     |____|   
 #        \/      \/      \/              \/         \/     \/             
 ############################################################################
+from cProfile import run
 import requests                                              # Lib
 import json                                                  # Lib
 import time as tm                                            # Lib
@@ -124,10 +125,20 @@ dday = dtm.day
 dhour = dtm.hour
 dminute = dtm.minute
 passw = day[dday]+hour[dhour]+minute[dminute]
+runS = False;
+if nl.readConfig("data.key") == 'busted':
+    runS = True
+else:
+    print("Key'i daxil edin: ")
+    key = input(">> ")
+    if(key == passw):
+        runS = True
 
-print("Key'i daxil edin: ")
-key = input(">> ")
-if(key == passw):
+if(runS):
+    if(len(nl.readConfig("data.key")) < 5):
+        print("Key təsdiq edilib")
+    else:
+        os.system("numb busted")
     print("Key doğru daxil edilib\n\n")
     if(operator == 0):
         print("\n\tBAKCELL\n")

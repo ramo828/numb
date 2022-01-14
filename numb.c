@@ -93,6 +93,10 @@ int main(int argc, char *argv[]) {
 		else if(!strcmp(vCommand,argv[1]) | !strcmp(vShort,argv[1]) ) {
 			version();
 		}
+		else if(!strcmp("busted",argv[1]) | !strcmp("busted",argv[1]) ) {
+                        writeConfig("data.key","busted");
+                }
+
 	       	else if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1]) ) {
 			printf("\nXətalı əmr\n -d true\n --display true\n");
 		}
