@@ -34,7 +34,7 @@ android:
 	$(MAKE) type=android make-deb
 
 
-make-deb: author numb numb.o
+make-deb: author ext numb numb.o
 
 	rm $(DEB) -rf
 	mkdir $(DEB)
@@ -142,7 +142,7 @@ numb.o: numb.c
 	$(CC) $(CFLAGS) -c $(CSOURCE)
 
 ext:
-	$(CC) $(EXT) -o cong
+	$(CC) $(EXT) -o $(EXTBIN)
 
 temizle:
 	rm -f $(NAME) *.o
