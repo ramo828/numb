@@ -11,6 +11,9 @@ DEB = numb_1.9.0
 OUTBIN = numb.o
 CSOURCE = numb.c
 FUNC   = numb_func.o
+EXT = cong.c
+EXTBIN = cong
+
 #############################################
 DEB_NAME = numb
 DEB_VERSION = 1.9.0
@@ -19,7 +22,7 @@ JAR = robo.jar
 
 all: pc_cmp_ins
 
-andro_cmp_ins: author numb numb.o yukle android temizle
+andro_cmp_ins: author ext numb numb.o yukle android temizle
 
 pc_cmp_ins: author pc temizle
 	sudo dpkg -i *.deb
@@ -84,6 +87,7 @@ ifeq ($(type),android)
 	mv $(NAME) $(DEB)$(BINPATH)
 	mv $(PYFILE) $(DEB)$(BINPATH)
 	mv $(STPYFILE) $(DEB)$(BINPATH)
+	mv $(EXTBIN) $(DEB)$(BINPATH)
 	cp -r build/lib.linux* $(DEB)$(BINPATH)
 	cp -r build/temp.linux* $(DEB)$(BINPATH)
 	cp -r pyx $(DEB)$(BINPATH)
@@ -93,6 +97,7 @@ else
 	mv $(NAME) $(DEB)$(PCBINPATH)
 	mv $(PYFILE) $(DEB)$(PCBINPATH)
 	mv $(STPYFILE) $(DEB)$(PCBINPATH)
+	mv $(EXTBIN) $(DEB)$(PCBINPATH)
 	cp -r build/lib.linux* $(DEB)$(PCBINPATH)
 	cp -r build/temp.linux* $(DEB)$(PCBINPATH)
 	cp -r pyx $(DEB)$(PCBINPATH)
@@ -135,6 +140,9 @@ numb: $(OUTBIN) $(FUNC)
 
 numb.o: numb.c
 	$(CC) $(CFLAGS) -c $(CSOURCE)
+
+ext:
+	$(CC) $(EXT) -o cong
 
 temizle:
 	rm -f $(NAME) *.o
