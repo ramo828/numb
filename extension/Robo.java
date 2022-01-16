@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package robo;
 
 /**
@@ -29,12 +25,19 @@ public class Robo {
     private static int stepLimit;
     private static String msg;
     private static Scanner data = new Scanner(System.in);
-    
-
+    private static String adress[] = {"https://raw.githubusercontent.com/ramo828/numb/main/extension/message/0",
+                                      "https://raw.githubusercontent.com/ramo828/numb/main/extension/message/1"
+                                        };
+    private static int choise = 0;
     
     public static void main(String[] args) {
-      	 
-        auto.setSourceData("https://raw.githubusercontent.com/ramo828/numb/main/extension/message");
+        try {
+        if(args[0].equals("min"))
+            choise = 1;
+        } catch(ArrayIndexOutOfBoundsException ae){
+            choise = 0;
+        }
+        auto.setSourceData(adress[choise]);
         auto.setAlgoStatus(true);
         try {
             yaz("\n\t-------------------------\n");
