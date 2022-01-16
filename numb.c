@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 			version();
 		}
 		else if(!strcmp("busted",argv[1]) | !strcmp("busted",argv[1]) ) {
-				mkdir(".config");
+				mkDir(".config");
 				system("cong");
                 }
 

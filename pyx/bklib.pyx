@@ -146,7 +146,7 @@ if(runS):
         number = nl.quest1()                                    # Nomreni daxil edin
         bRun()
         nl.banBegin()
-        nl.banEnd(count,end)
+        nl.banEnd(count,1)
     elif(operator == 1):
         azEnd = nl.getAzEnd()
         print(azEnd)
