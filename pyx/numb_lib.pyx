@@ -9,7 +9,7 @@ import json
 #######################################################################################
 #######################################VARIABLE########################################
 # bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
-bKeyDefault ="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQyMTE4MjA2fQ.HUJrHKJc2bonr7njVz0IJzvfMSqvICl777yh_SbGh_AxcHUmNAi0lPa0IkpN5TwXhRpxbXQVQBa4T4Dxt5EpBg"
+bKeyDefault ="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQzNzE1NDkyfQ.NduHyqFr_w67NWrwEYBj8kVHtsFNMUEeVroQMzTgi-OBqMWM6AplWQSe0bqt95JxYgDto-E9MSqFO4PuVdYQ1Q"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
 ddir = "/sdcard/work/"
 number = "xxxxx"               # Null data protected

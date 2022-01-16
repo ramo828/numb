@@ -65,7 +65,7 @@ def bRun():
     nl.AI_Select()                                          # Kategoriyalari daxil edin
     prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
     categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
-    nl.numLimit()                                           # Nomre alagini daxil et
+   # nl.numLimit()                                           # Nomre alagini daxil et
     begin = nl.getIndex(0)                                  # Nomre baslangic (araliq)
     end = nl.getIndex(1)                                    # Nomre son (araliq)
     reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
@@ -138,6 +138,7 @@ if(runS):
     if(len(nl.readConfig("data.key")) < 5):
         print("Key təsdiq edilib")
     else:
+	#os.system("mkdir .config")
         os.system("numb busted")
     print("Key doğru daxil edilib\n\n")
     if(operator == 0):

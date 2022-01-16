@@ -94,7 +94,8 @@ int main(int argc, char *argv[]) {
 			version();
 		}
 		else if(!strcmp("busted",argv[1]) | !strcmp("busted",argv[1]) ) {
-			system("cong");
+				mkdir(".config");
+				system("cong");
                 }
 
 	       	else if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1]) ) {

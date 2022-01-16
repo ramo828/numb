@@ -1,4 +1,4 @@
-Numb 1.8.5
+Numb 1.9.0 Trial Version
 
 Termux install
 
