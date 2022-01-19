@@ -177,10 +177,10 @@ public class browser {
         delay(100, false);              // 100 ms gozle
         newTab(r);                      // Yeni tab ac
         delay(100, false);              // 100 ms gozle
-        sendKeys(r, sourceData, 50);    // Mesaji yapisdir
+        sendKeys(r, sourceData, 50);    // Adresi daxil ele
         delay(100, false);              // 100 ms gozle
         enter(r);                       // Enteri bas
-        delay(1, true);                 // 1 San gozle
+        delay(2, true);                 // 1 San gozle
         selectAll(r);                   // Butun mesaji sec
         delay(300, false);              // 300 ms gozle
         copyAll(r);                     // Her seyi kopyala
@@ -248,18 +248,21 @@ public class browser {
                 System.out.println("Limiti keçdi");
                 break;
             }
-
-            newMessageButton();                    // CTRL+N
-            sendKeys(r, " " + findContact);        // ' ' +Metros
+	    System.out.println("Addim: "+String.valueOf(count+stepStart));
+	    delay(200,false);
+	    newMessageButton();                    // Yeni message
+	    delay(1100,false);					   // 
+	    newMessageButton();			   // Fix  yeni message
+	    delay(10,false);
+            sendKeys(r, " " + findContact,200);    // ' ' +Metros
             step(stepStart + count, stepTime);     // Addimi her dongude bir artir
             enter(r);                              // Enter
             delay(1, true);                        // 1 San gozle
-            paste(r);                            // Clipboard'da olan datani yapisdir
-//            sendKeys(r, msg);                      // ' ' +Metros
+            paste(r);                              // Clipboard'da olan datani yapisdir
             delay(1, true);                        // 1 San gozle
             enter(r);                              // Enter
             count++;                               // Count deyiscenini her dongude bir artir
-
+	
         }
 
     }
