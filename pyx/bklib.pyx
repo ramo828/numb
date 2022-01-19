@@ -75,8 +75,6 @@ def bRun():
         print("Biraz gozleyin...\n")
         print("Sehife sayi: "+str(totalElements)+"\nNomre sayi: "+str(rawTotalElement))
         dataTwo +=nl.loadData(allNumber)
-    
-    for pre in tqdm(range(begin,end)):
         for dataTree in tqdm(dataTwo.split("\n")):
             # nl.vcardWrite(w,contactName,prefix,pre,dataTree,count)
             nl.fileWrite(w,dataTree+"\n")
