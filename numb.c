@@ -75,10 +75,18 @@ int main(int argc, char *argv[]) {
 
 	if( argc == 2 ) {
 	      	if(!strcmp(upCommand,argv[1]) | !strcmp(uShort,argv[1])){
-                              	update();
+                        if(__PRO__ == 1)      	
+				update();
+			else
+				printf("Tam versiya deyil!");
+
 		}
 		else if(!strcmp(statCommand,argv[1]) | !strcmp(statShort,argv[1])){
-				system(pyst[Target]);
+				if(__PRO__ ==  1)
+					system(pyst[Target]);
+				else
+					printf("Tam versiya deyil!");
+
 		}
 		else if(!strcmp(hCommand,argv[1]) | !strcmp(hShort,argv[1])){
                               printf("%s %s %s %s %s %s %s %s %s",hm[0],hm[1],hm[2],hm[3],hm[4],hm[5],hm[6],hm[7],hm[8]);
@@ -96,13 +104,17 @@ int main(int argc, char *argv[]) {
 		else if(!strcmp("busted",argv[1]) | !strcmp("busted",argv[1]) ) {
 				mkDir(".config");
 				system("cong");
+				//keyPass("data.key","busted");
                 }
 
 	       	else if(!strcmp(gCommand,argv[1]) | !strcmp(gShort,argv[1]) ) {
 			printf("\nXətalı əmr\n -d true\n --display true\n");
 		}
 		else if(!strcmp(reInstallCommand,argv[1]) | !strcmp(reInstallShort,argv[1]) ) {
-                        reInstall();
+                        if(__PRO__ == 1)
+				reInstall();
+			else
+				printf("Tam versiya deyil!");
                 }
 		else if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
                         printf("\nXətalı əmr!\nnumb --about [phone] ,[code], [author]");
@@ -117,38 +129,47 @@ int main(int argc, char *argv[]) {
                         printf("\nXətalı əmr!\n numb --contactName ad");
                 }
 		 else if(!strcmp(robotCommand,argv[1]) | !strcmp(botShort,argv[1])){
-			if(Target == 1){
-                        printf("\nBot Çalısdırılır...");
-			system("java -jar /usr/local/bin/robo.jar");
-		}
-			else {
-				printf("\nMobil cihaz dəstəklənmir\n");
+			if(__PRO__ == 1) {
+				if(Target == 1){
+                        		printf("\nBot Çalısdırılır...");
+					system("java -jar /usr/local/bin/robo.jar");
+				}
+				
+		 		else {
+					printf("\nMobil cihaz dəstəklənmir\n");
+				}
+			} else {
+				printf("Tam versiya deyil!");
 			}
-                }
-
+                
+		}	
 		else {
 		printf("\nBilinməyən əmr!\n");
 		}
 
-   	}
+	}   	
    	else if( argc > 2 ) {
 
-
-
-
 		if(!strcmp(robotCommand,argv[1]) | !strcmp(botShort,argv[1])){
-			if(!strcmp("min",argv[2])){
-				printf("Mesaj 2 seçildi\n");
+				if(!strcmp("min",argv[2])){
+					printf("Mesaj 2 seçildi\n");
 				if(Target == 1){
-                        	printf("\nBot Çalısdırılır...");
-                        	system("java -jar /usr/local/bin/robo.jar min");
-                	}
+					     if(__PRO__ == 1) {
+                        				printf("\nBot Çalısdırılır...");
+                        				system("java -jar /usr/local/bin/robo.jar min");
+      					    }
+					     else {
+                                			printf("Tam versiya deyil!");
+
+                       				 }
+
+                		}
+		}
                         	else {
                                 	printf("\nMobil cihaz dəstəklənmir\n");
                         	}
-			}
+			} 
 		
-		}
 
     		if(!strcmp(kCommand,argv[1]) | !strcmp(kShort,argv[1])){
 			printf("KEY: %s\n", argv[2]);
@@ -164,7 +185,7 @@ int main(int argc, char *argv[]) {
 				printf("\nHələlik bu funksiya aktiv deyil\n");
 			}
 		}
-		if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
+		if(!strcmp(abCommand,argv[0]) | !strcmp(aShort,argv[1])){
 		        int length = sizeof(trinityCommand) / sizeof(*trinityCommand) - 1;
 			for(int i=0; i<=length; i++)
 				if(!strcmp(argv[2],trinityCommand[i])){
@@ -180,12 +201,16 @@ int main(int argc, char *argv[]) {
 		}
 	
 		if(!strcmp(stsCommand,argv[1]) | !strcmp(stsShort,argv[1])){
-			if(!strcmp(argv[2],"proUser")){
-				 mkDir(".config");
-                        	 writeConfig("user.status", "1");
-			}
-			else {
-			printf("Yenə bir xata :(");
+			if(__PRO__ == 1){	
+				if(!strcmp(argv[2],"proUser")){
+					 mkDir(".config");
+                        	 	 writeConfig("user.status", "1");
+				}
+				else {
+				printf("Yenə bir xata :(");
+				}
+			} else {
+	                       printf("Tam versiya deyil!");
 			}
 		}
 

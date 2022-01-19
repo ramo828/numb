@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define __VERSION_APP__  "1.9.0 Beta"
+#define __VERSION_APP__  "1.9.0 Trial"
+#define __PRO__  0
 void update();
 void reInstall();
 void removeApp();
