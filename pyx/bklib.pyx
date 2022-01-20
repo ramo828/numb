@@ -56,16 +56,20 @@ def bRun():
     global count
     global end
     global dataTwo
-    totalElements = math.ceil(nl.loadTotal()/2000)          # Sehife sayi
-    rawTotalElement = nl.loadTotal()                        # Nomre sayi
+    
     nl.AI_Select()                                          # Kategoriyalari daxil edin
-    prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
-    categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
+    #prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
     nl.numLimit()                                           # Nomre alagini daxil et
     begin = nl.getIndex(0)                                  # Nomre baslangic (araliq)
     end = nl.getIndex(1)                                    # Nomre son (araliq)
-    reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
+    #reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
     prefix = nl.prefixDef()                                 # Prefix deyiskeni
+    categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
+    lim = nl.loadTotal(categoryKey)/2000
+    totalElements = math.ceil(lim)                          # Sehife sayi
+    rawTotalElement = nl.loadTotal(categoryKey)             # Nomre sayi
+
+    print("t"+str(totalElements))
     for allNumber in range(totalElements):
         os.system("clear")
         print("Biraz gozleyin...\n")

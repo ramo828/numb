@@ -11,7 +11,7 @@ import json
 # bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
 bKeyDefault ="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQyMTE4MjA2fQ.HUJrHKJc2bonr7njVz0IJzvfMSqvICl777yh_SbGh_AxcHUmNAi0lPa0IkpN5TwXhRpxbXQVQBa4T4Dxt5EpBg"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
-ddir = "/sdcard/work/"
+ddir = "/home/ramo828"#"/sdcard/work/"
 number = "xxxxx"               # Null data protected
 err = 0;                       # Xeta
 path = "default.dir"           # Export edilecek qovluq
@@ -323,14 +323,25 @@ def conBakcell(page):
     headers=headers)                                        # Header
     return r
 
+
+def getConMaxData(catValKey):
+    r = requests.get(url, params={"prefix":prefixSel[prefixValue],
+    "msisdn":number,                                        # Nomre datasi
+    "categoryId":category[catValKey],                       # Kategorya
+    "showReserved":"true",                                  # Sifaris verilenler
+    "size":"2000",                                          # Maksimum nomre sayi
+    "page":"0"},                                           # Maksimum sehife sayi
+    headers=headers)                                        # Header
+    return r
+
 ######################################################################################
 ###################################BakcellStatistic###################################
-def loadTotal():
-    totalNumb = ""
-    r = conBakcell(0)
+def loadTotal(categoryKeyLocal):
+    totalNumb = 0
+    r = conBakcell(categoryKeyLocal)
     totalJSON = json.loads(r.text);
     for tData in totalJSON:
-        totalNumb = (tData["totalElements"])
+        totalNumb = int((tData["totalElements"]))
     return totalNumb
 
 
