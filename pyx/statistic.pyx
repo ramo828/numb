@@ -68,8 +68,8 @@ def dlData():
     else:
         raise NameError("Seçim mövcud deyil")    
     f = File(nameFile,"w")
-    totalElements = math.ceil(nl.loadTotal()/2000)                 # Sehife sayi
-    rawTotalElement = nl.loadTotal()                               # Nomre sayi
+    totalElements = math.ceil(nl.loadTotal(categoryKey)/2000)                 # Sehife sayi
+    rawTotalElement = nl.loadTotal(categoryKey)                               # Nomre sayi
     for cevir in range(totalElements):                          # Tapilan sehifede nomreleri liste yukle
         sharp=sharp+"#"
         if(cevir+1%40 == 0):
