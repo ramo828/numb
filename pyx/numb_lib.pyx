@@ -8,7 +8,6 @@ import json
 
 #######################################################################################
 #######################################VARIABLE########################################
-# bKeyDefault = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQxOTQyNzg0fQ._jbQSTx6dboyyS7Lr1ZDY3cnTW3AlZoEVPQQ5BlS7eeKLmmPTR07JfgzaXGh6Ov2mNYacUXjFEF6lnuv9Juc8Q"
 bKeyDefault ="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQzNzE1NDkyfQ.NduHyqFr_w67NWrwEYBj8kVHtsFNMUEeVroQMzTgi-OBqMWM6AplWQSe0bqt95JxYgDto-E9MSqFO4PuVdYQ1Q"
 dirs = os.getcwd()+"/.config/"                           # Oldugun qovluq
 ddir = "/sdcard/work/"
@@ -56,7 +55,7 @@ binPath = ""
 ######################################ORTAQ############################################
 
 def conv_numeric(counter):
-    sonluq = ["a","b","c","d"]
+    sonluq = ["a","b","c","d","e"]
     clone = ""
     for i in range(counter):
         if(i<10):
@@ -66,6 +65,8 @@ def conv_numeric(counter):
         elif(i<1000):
             clone = "_"+sonluq[2]+str(i)
         elif(i<10000):
+            clone = "_"+sonluq[3]+str(i)
+        elif(i<100000):
             clone = "_"+sonluq[3]+str(i)
     return clone;
 
@@ -141,10 +142,8 @@ def vcardWrite(w,contactName,prefix,pre,dataFour,count1):
 	+dataVcard[4]
 	+dataVcard[5])
 
-
 def fileWrite(w,textData):
     w.write(textData)
-
 
 
 #####################################################################################
@@ -329,14 +328,25 @@ def conBakcell(page):
     headers=headers)                                        # Header
     return r
 
+
+def getConMaxData(catValKey):
+    r = requests.get(url, params={"prefix":prefixSel[prefixValue],
+    "msisdn":number,                                        # Nomre datasi
+    "categoryId":category[catValKey],                       # Kategorya
+    "showReserved":"true",                                  # Sifaris verilenler
+    "size":"2000",                                          # Maksimum nomre sayi
+    "page":"0"},                                           # Maksimum sehife sayi
+    headers=headers)                                        # Header
+    return r
+
 ######################################################################################
 ###################################BakcellStatistic###################################
-def loadTotal():
-    totalNumb = ""
-    r = conBakcell(0)
+def loadTotal(categoryKeyLocal):
+    totalNumb = 0
+    r = conBakcell(categoryKeyLocal)
     totalJSON = json.loads(r.text);
     for tData in totalJSON:
-        totalNumb = (tData["totalElements"])
+        totalNumb = int((tData["totalElements"]))
     return totalNumb
 
 

@@ -61,15 +61,15 @@ char* pyst[] = {"python /data/data/com.termux/files/usr/bin/statistic.py",
 int main(int argc, char *argv[]) {
 	
 		#if __ANDROID__
-                printf("\n-----------OS: Android-----------\n");
+                printf("\n\t\t-----------OS: Android-----------\n");
                 Target = AndroidVar;
                 #elif __linux__
-                printf("\n-----------OS: Linux-----------\n");
+                printf("\n\t\t-----------OS: Linux-----------\n");
                 mkDir(".config");
                 writeConfig("default.dir",get_homedir());
                 Target = LinuxVar;
                 #elif __UNIX__
-                printf("\n-----------Unix secildi-----------\n");
+                printf("\n\t\t-----------Unix secildi-----------\n");
                 #endif
 
 
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
                         if(__PRO__ == 1)
 				reInstall();
 			else
-				printf("Tam versiya deyil!");
+				printf("Tam versiya deyil!\n");
                 }
 		else if(!strcmp(abCommand,argv[1]) | !strcmp(aShort,argv[1])){
                         printf("\nXətalı əmr!\nnumb --about [phone] ,[code], [author]");
@@ -219,7 +219,15 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-	        system(pyc[Target]);
+		printf("\n\t Programın demo versiyasını istifadə edirsiniz.\n");
+		printf("\t Tam versiyanı əldə etmək üçün müəllif ilə əlaqə\n");
+		printf("\t saxlayın və tam versiyada istəyinizə uyğun xüsusiyyətləri\n");
+		printf("\t əldə edin. Məlumat üçün aşağıda qeyd edilən whatsapp\n");
+		printf("\t nömrəsi ilə əlaqə yaradın. Hörmətlə Ramiz\n");
+		printf("\t\t --->> 055 830 27 66 <<---\n");
+		sleep(7);
+		system("clear");
+		system(pyc[Target]);
    	}	
 	return 0;
 } //Ana kod

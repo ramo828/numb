@@ -5,20 +5,18 @@
 # |____|_  /(____  /__|_|  /\____/_______  /\_______  /\___  /     |____|   
 #        \/      \/      \/              \/         \/     \/             
 ############################################################################
-from cProfile import run
+from cProfile import run                                     # Lib
 import requests                                              # Lib
 import json                                                  # Lib
 import time as tm                                            # Lib
-import numb_lib as nl
-import os
-import warnings
-from tqdm import tqdm
-import math
-from datetime import datetime
+import numb_lib as nl                                        # LocalLib
+import os                                                    # Lib
+import warnings                                              # Lib
+from tqdm import tqdm                                        # Lib
+import math                                                  # Lib
+from datetime import datetime                                # Lib
 
 ############################################################################
-
-
 contactName = ""
 if len(nl.readConfig("contact.name")) > 0:
     contactName = nl.readConfig("contact.name") 
@@ -60,16 +58,20 @@ def bRun():
     global count
     global end
     global dataTwo
-    totalElements = math.ceil(nl.loadTotal()/2000)          # Sehife sayi
-    rawTotalElement = nl.loadTotal()                        # Nomre sayi
+    
     nl.AI_Select()                                          # Kategoriyalari daxil edin
-    prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
-    categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
-   # nl.numLimit()                                           # Nomre alagini daxil et
+    #prefixValue = nl.getPrCt(0)                             # Prefix melumatlarini al
+    nl.numLimit()                                           # Nomre alagini daxil et
     begin = nl.getIndex(0)                                  # Nomre baslangic (araliq)
     end = nl.getIndex(1)                                    # Nomre son (araliq)
-    reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
+    #reverseValue = nl.getIndex(2)                           # Nomreleri deyisdir. (099 secilende 055, 055 secilende 099 elave et)
     prefix = nl.prefixDef()                                 # Prefix deyiskeni
+    categoryKey = nl.getPrCt(1)                             # Kategoriya keyini al  
+    lim = nl.loadTotal(categoryKey)/2000
+    totalElements = math.ceil(lim)                          # Sehife sayi
+    rawTotalElement = nl.loadTotal(categoryKey)             # Nomre sayi
+
+    print("t"+str(totalElements))
     for allNumber in range(totalElements):
         os.system("clear")
         print("Biraz gozleyin...\n")
@@ -103,8 +105,9 @@ if(status == 1):
     operator = int(input(">> "))
 else:
     operator = 0
+
 day = ["Ba","Cb","Dc","Ed","Fe","Gf","Hg","Jh","Kj","Lk",
-         "Ml","Nm","On","Po","Qp","Rq","Sr","Ts","Ut","Vu"
+        "Ml","Nm","On","Po","Qp","Rq","Sr","Ts","Ut","Vu"
         "Yx","Zy","0z","1y","2x","3v","4u","5t","6s","7r","8q"]
 
 hour = ["%$","!@","~$","@&","+?","><","*&","#%","!#","&!",
@@ -112,12 +115,13 @@ hour = ["%$","!@","~$","@&","+?","><","*&","#%","!#","&!",
         "iA","zE","Rb","CN"]
 minute = [
     	"aZ","bW","cX","dY","eV","fU","gT","hS","jR","Qk",
-        "Pl","mI","nH","oG","pJ","qK","rL","sO","tN","uM", 
-        "vF","xE","yD","zC","wB","&A","%B","$C","@D","!E", 
-        "~F","?G",",H",">I","<J","00","08","07","04","03", 
-        "20","14","19","70","74","01","02","09","10","11", 
+        "Pl","mI","nH","oG","pJ","qK","rL","sO","tN","uM",
+        "vF","xE","yD","zC","wB","&A","%B","$C","@D","!E",
+        "~F","?G",",H",">I","<J","00","08","07","04","03",
+        "20","14","19","70","74","01","02","09","10","11",
         "12","99","88","77","66","55","44","33","22","11"
 ]
+
 dtm  = datetime.now()
 dday = dtm.day
 dhour = dtm.hour
@@ -139,6 +143,7 @@ if(runS):
 	#os.system("mkdir .config")
         os.system("numb busted")
     print("Key doğru daxil edilib\n\n")
+
     if(operator == 0):
         print("\n\tBAKCELL\n")
         number = nl.quest1()                                    # Nomreni daxil edin
@@ -153,10 +158,9 @@ if(runS):
         aRun()
         nl.banBegin()
         nl.banEnd(count,azEnd)
-    else:
-        print("Bilinməyən əmr!")
 else:
-    print("Key dogru deyil")
+        print("Bilinməyən əmr!")
+
 
 ##############################################################################
 print(nl.readConfig(nl.getFP(0))+nl.getFP(1))
