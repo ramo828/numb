@@ -78,14 +78,14 @@ int main(int argc, char *argv[]) {
                         if(__PRO__ == 1)      	
 				update();
 			else
-				printf("Tam versiya deyil!");
+				printf("Tam versiya deyil!\n");
 
 		}
 		else if(!strcmp(statCommand,argv[1]) | !strcmp(statShort,argv[1])){
 				if(__PRO__ ==  1)
 					system(pyst[Target]);
 				else
-					printf("Tam versiya deyil!");
+					printf("Tam versiya deyil!\n");
 
 		}
 		else if(!strcmp(hCommand,argv[1]) | !strcmp(hShort,argv[1])){
@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
 					printf("\nMobil cihaz dəstəklənmir\n");
 				}
 			} else {
-				printf("Tam versiya deyil!");
+				printf("Tam versiya deyil!\n");
 			}
                 
 		}	
@@ -159,7 +159,7 @@ int main(int argc, char *argv[]) {
                         				system("java -jar /usr/local/bin/robo.jar min");
       					    }
 					     else {
-                                			printf("Tam versiya deyil!");
+                                			printf("Tam versiya deyil!\n");
 
                        				 }
 
@@ -210,7 +210,7 @@ int main(int argc, char *argv[]) {
 				printf("Yenə bir xata :(");
 				}
 			} else {
-	                       printf("Tam versiya deyil!");
+	                       printf("Tam versiya deyil!\n");
 			}
 		}
 
