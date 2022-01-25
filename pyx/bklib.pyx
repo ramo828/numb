@@ -135,6 +135,8 @@ else:
     key = input(">> ")
     if(key == passw):
         runS = True
+    else:
+        print("Key xetalıdır!\n")
 
 if(runS):
     if(len(nl.readConfig("data.key")) < 5):
