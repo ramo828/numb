@@ -158,8 +158,6 @@ if(runS):
         aRun()
         nl.banBegin()
         nl.banEnd(count,azEnd)
-else:
-        print("Bilinməyən əmr!")
 
 
 ##############################################################################
