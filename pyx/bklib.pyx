@@ -127,7 +127,8 @@ dday = dtm.day
 dhour = dtm.hour
 dminute = dtm.minute
 passw = day[dday]+hour[dhour]+minute[dminute]
-runS = False;
+runS = False
+global runS
 if nl.readConfig("data.key") == 'busted':
     runS = True
 else:
@@ -135,9 +136,6 @@ else:
     key = input(">> ")
     if(key == passw):
         runS = True
-    else:
-        print("Key xetalıdır!\n")
-
 if(runS):
     if(len(nl.readConfig("data.key")) < 5):
         print("Key təsdiq edilib")
@@ -160,7 +158,8 @@ if(runS):
         aRun()
         nl.banBegin()
         nl.banEnd(count,azEnd)
-
+else:
+        print("Key xetalıdır")
 
 ##############################################################################
 print(nl.readConfig(nl.getFP(0))+nl.getFP(1))
