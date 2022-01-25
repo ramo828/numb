@@ -24,6 +24,7 @@ else:
     contactName = "Metros"
 dataTwo = "";                                               # Data 2
 count = 0;                                                  # Saygac
+keyCount = 0
 prefixValue = 0;                                            # Default deyer 0
 end = 0
 warnings.filterwarnings("ignore")
@@ -132,10 +133,15 @@ global runS
 if nl.readConfig("data.key") == 'busted':
     runS = True
 else:
-    print("Key'i daxil edin: ")
-    key = input(">> ")
-    if(key == passw):
-        runS = True
+    while not runS:
+        print("Key'i daxil edin: ")
+        if(keyCount == 3):
+            print("Keyi 3 dəfə yanlış daxil etdiniz")
+            break
+        key = input(">> ")
+        if(key == passw):
+            runS = True
+        keyCount=keyCount+1
 if(runS):
     if(len(nl.readConfig("data.key")) < 5):
         print("Key təsdiq edilib")
