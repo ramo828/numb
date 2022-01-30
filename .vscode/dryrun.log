@@ -1,0 +1,108 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ramo828/Belgeler/project/numb'
+ 
+echo "Ramiz Mammadli";
+ 
+sleep 1;
+ 
+echo "Fayllar yüklənir...";
+ 
+make type=PC make-deb
+ 
+make[1]: Entering directory '/home/ramo828/Belgeler/project/numb'
+ 
+echo "Ramiz Mammadli";
+ 
+sleep 1;
+ 
+echo "Fayllar yüklənir...";
+ 
+gcc -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels -c numb.c
+ 
+gcc -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels   -c -o numb_func.o numb_func.c
+ 
+gcc -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels -lm -o numb  numb.o numb_func.o
+ 
+rm numb_1.9.0 -rf
+ 
+mkdir numb_1.9.0
+ 
+echo PC
+ 
+echo PC
+ 
+mkdir -p numb_1.9.0/usr/local/bin
+echo Yaradildi
+# setup.py yaradildi
+touch setup.py
+echo "#############################################################"
+echo "from setuptools import setup" >> setup.py
+echo "from Cython.Build import cythonize" >> setup.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/bklib.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/numb_lib.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
+echo "setup(" >> setup.py
+echo "    ext_modules = cythonize(\"pyx/statistic.pyx\")," >> setup.py
+echo "    compiler_directives={'language_level' : 3}" >> setup.py
+echo ")"  >> setup.py
+# numb.py yaradilir
+touch numb.py
+echo "#############################################################"
+echo "#RamoSoft" >> numb.py
+echo "import pyximport; pyximport.install()" >> numb.py
+echo "import pyx.bklib" >> numb.py
+python setup.py build_ext --inplace
+# Statistic mode
+touch statistic.py
+echo "#############################################################"
+echo "#RamoSoft" >> statistic.py
+echo "import pyximport; pyximport.install()" >> statistic.py
+echo "import pyx.statistic" >> statistic.py
+python setup.py build_ext --inplace
+###################################################################
+echo PC
+mv numb  numb_1.9.0/usr/local/bin
+mv numb.py numb_1.9.0/usr/local/bin
+mv statistic.py numb_1.9.0/usr/local/bin
+cp -r build/lib.linux* numb_1.9.0/usr/local/bin
+cp -r build/temp.linux* numb_1.9.0/usr/local/bin
+cp -r pyx numb_1.9.0/usr/local/bin
+# Java Bot
+javac extension/Robo.java extension/browser.java
+rm robo MANIFEST.MF -rf
+mkdir robo
+mv extension/*.class robo/
+echo "Manifest-Version: 1.0" >> MANIFEST.MF
+echo "Ant-Version: Apache Ant 1.10.8"  >> MANIFEST.MF
+echo "Created-By: 11.0.13+8-post-Debian-1 (Debian)"  >> MANIFEST.MF
+echo "Class-Path: "  >> MANIFEST.MF
+echo "X-COMMENT: Main-Class will be added automatically by build"  >> MANIFEST.MF
+echo "Main-Class: robo.Robo"  >> MANIFEST.MF
+jar cfm robo.jar MANIFEST.MF robo/*.class
+pwd
+mv robo.jar numb_1.9.0/usr/local/bin
+mkdir numb_1.9.0/DEBIAN/
+touch numb_1.9.0/DEBIAN/control
+chmod -R 0755 numb_1.9.0
+echo "Package: numb" >> numb_1.9.0/DEBIAN/control
+echo "Version: 1.9.0" >> numb_1.9.0/DEBIAN/control
+echo "Architecture: all" >> numb_1.9.0/DEBIAN/control
+echo "Maintainer: RamoSoft <illegalism666@gmail.com>" >> numb_1.9.0/DEBIAN/control
+echo "Description: Bakcell && Azercell Tools" >> numb_1.9.0/DEBIAN/control
+echo " Programin esas meqsedi nomre satisi zamani mumkun qeder vaxta qenaet etmekdir" >> numb_1.9.0/DEBIAN/control
+#umask 22
+dpkg-deb --build --root-owner-group numb_1.9.0
+rm -rf *cpython* build .config numb_1.9.0 *.o setup.py pyx/*.c robo *.MF
+sleep 2
+clear
+make[1]: Leaving directory '/home/ramo828/Belgeler/project/numb'
+rm -f numb  *.o
+rm -f MANIFEST.MF
+sudo dpkg -i *.deb
+make: Leaving directory '/home/ramo828/Belgeler/project/numb'
+ 
