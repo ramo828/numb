@@ -13,6 +13,6 @@ Termux install
 
 
 Linux install
-<b>sudo apt-get update && sudo apt-get install git openjdk-11* python3 git -y </b>
-<b>git clone https://github.com/ramo828/numb.git && cd numb</b>
-<b>make pc && sudo dpkg -i *.deb</b>
+</br><b>sudo apt-get update && sudo apt-get install git openjdk-11* python3 git -y </b>
+</br><b>git clone https://github.com/ramo828/numb.git && cd numb</b>
+</br><b>make pc && sudo dpkg -i *.deb</b>
