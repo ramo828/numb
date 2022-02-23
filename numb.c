@@ -132,16 +132,24 @@ int main(int argc, char *argv[]) {
 
 
 		if(!strcmp(robotCommand,argv[1]) | !strcmp(botShort,argv[1])){
+			if(Target == 0)
+                                printf("\nMobil cihaz dəstəklənmir\n"); 
+			else {
 			if(!strcmp("min",argv[2])){
 				printf("Mesaj 2 seçildi\n");
 				if(Target == 1){
                         	printf("\nBot Çalısdırılır...");
                         	system("java -jar /usr/local/bin/robo.jar min");
-                	}
-                        	else {
-                                	printf("\nMobil cihaz dəstəklənmir\n");
-                        	}
+                		}
 			}
+			else if(!strcmp("099",argv[2])){
+				printf("Mesaj 099 seçildi\n");
+				if(Target == 1){
+                        	printf("\nBot Çalısdırılır...");
+                        	system("java -jar /usr/local/bin/robo.jar 099");
+                		}
+			}
+			}   
 		
 		}
 
