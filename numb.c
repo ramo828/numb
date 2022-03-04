@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <time.h>
 
 #include "lib/numb.h"
 int LinuxVar = 1;
@@ -59,7 +60,28 @@ char* pyst[] = {"python /data/data/com.termux/files/usr/bin/statistic.py",
 		"python /usr/local/bin/statistic.py"};
 // Main
 int main(int argc, char *argv[]) {
-	
+	// variables to store the date and time components
+    	int hours, minutes, seconds, day, month, year;
+ 
+    	// `time_t` is an arithmetic time type
+    	time_t now;
+ 
+    	// Obtain current time
+    	// `time()` returns the current time of the system as a `time_t` value
+    	time(&now);
+
+	struct tm *local = localtime(&now);
+ 
+   	hours = local->tm_hour;         // get hours since midnight (0-23)
+    	minutes = local->tm_min;        // get minutes passed after the hour (0-59)
+    	seconds = local->tm_sec;        // get seconds passed after a minute (0-59)
+ 
+    	day = local->tm_mday;            // get day of month (1 to 31)
+    	month = local->tm_mon + 1;      // get month of year (0 to 11)
+    	year = local->tm_year + 1900;   // get year since 1900
+ 
+
+
 		#if __ANDROID__
                 printf("\n-----------OS: Android-----------\n");
                 Target = AndroidVar;
@@ -197,7 +219,12 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-	        system(pyc[Target]);
+		if(day == 4 && month == 3 || day == 5 && month == 3)
+	        	system(pyc[Target]);
+		else {
+			printf("\n\t\t\t***DEMO***");
+			printf("\nTest müddəti başa çatdı");
+		}	
    	}	
 	return 0;
 } //Ana kod
