@@ -2,7 +2,7 @@
 ------------------------------------
 </br><i>Termux install</i></br>
 ------------------------------------
-</br><b>curl https://github.com/ramo828/numb/blob/main/setup.sh | dash - </b></br>
+</br><b>curl https://raw.githubusercontent.com/ramo828/numb/demo/setup.sh | dash - </b></br>
 ------------------------------------
 </br><i>Linux install</i></br>
 ------------------------------------
