@@ -1,5 +1,5 @@
 CC     = gcc
-CFLAGS = -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels
+CFLAGS = -O2 -Wall -pedantic -Wimplicit-function-declaration -I. -DANDROID -Wno-endif-labels  -Wunused
 LIBS   = -lm
 ##############################################
 NAME   = numb 

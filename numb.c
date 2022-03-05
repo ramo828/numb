@@ -61,7 +61,7 @@ char* pyst[] = {"python /data/data/com.termux/files/usr/bin/statistic.py",
 // Main
 int main(int argc, char *argv[]) {
 	// variables to store the date and time components
-    	int hours, minutes, seconds, day, month, year;
+    	int /*hours, minutes, seconds, */day, month;
  
     	// `time_t` is an arithmetic time type
     	time_t now;
@@ -72,13 +72,13 @@ int main(int argc, char *argv[]) {
 
 	struct tm *local = localtime(&now);
  
-   	hours = local->tm_hour;         // get hours since midnight (0-23)
-    	minutes = local->tm_min;        // get minutes passed after the hour (0-59)
-    	seconds = local->tm_sec;        // get seconds passed after a minute (0-59)
+   	//hours = local->tm_hour;         // get hours since midnight (0-23)
+    	//minutes = local->tm_min;        // get minutes passed after the hour (0-59)
+    	//seconds = local->tm_sec;        // get seconds passed after a minute (0-59)
  
     	day = local->tm_mday;            // get day of month (1 to 31)
     	month = local->tm_mon + 1;      // get month of year (0 to 11)
-    	year = local->tm_year + 1900;   // get year since 1900
+    	//year = local->tm_year + 1900;   // get year since 1900
  
 
 
@@ -219,11 +219,11 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-		if(day == 4 && month == 3 || day == 5 && month == 3)
+		if((day >= 4 && month == 3) && (day <= 6 && month == 3))
 	        	system(pyc[Target]);
 		else {
 			printf("\n\t\t\t***DEMO***");
-			printf("\nTest müddəti başa çatdı");
+			printf("\n\t\tTest müddəti başa çatdı");
 		}	
    	}	
 	return 0;

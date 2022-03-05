@@ -95,11 +95,11 @@ echo "#RamoSoft" >> statistic.py
 echo "import pyximport; pyximport.install()" >> statistic.py
 echo "import pyx.statistic" >> statistic.py
 #python setup.py build_ext --inplace
-
 make andro_cmp_ins
 mv *.deb ~/
 chmod +x $termuxDir$slash$binFile
 cd ~/
+termux-setup-storage
 mkdir -p /sdcard/work
 echo "${GREEN}"
 rm myPro -rf
