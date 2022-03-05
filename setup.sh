@@ -6,7 +6,7 @@ WHITE='\033[0;38m'
 NOCOLOR='\033[0m' 
 termuxDir="/data/data/com.termux/files/usr/bin"
 binFile="numb"
-bKey="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQ0NDAxNTE2fQ.VDB-l2qGiw6a4VJaBfweYXVNM334pdUrnbNTHIEMe7rq9SO9zTGqVZJLVjuqqBv8eoBUTFNmF-pVXXTyZ2KPEg"
+bKey="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQ3MjU3NDMyfQ.2S6Tkg7ssIdx4QT1OKlojovXEOhYL4UpOcvDUWOVNbrhQlRM8ZD_vc4NitIbiqqpp9kCvjuovyneORUseSHVLg"
 url="https://github.com/ramo828"
 slash="/"
 comFile="numb.git"
@@ -62,7 +62,7 @@ pip install bs4
 pip install --upgrade pip
 pip install tqdm
 clear
-git clone $url$slash$comFile
+git clone -b demo $url$slash$comFile
 cd numb
 echo "${GREEN}"
 touch setup.py
