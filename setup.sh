@@ -6,7 +6,7 @@ WHITE='\033[0;38m'
 NOCOLOR='\033[0m' 
 termuxDir="/data/data/com.termux/files/usr/bin"
 binFile="numb"
-bKey="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQ3MjU3NDMyfQ.2S6Tkg7ssIdx4QT1OKlojovXEOhYL4UpOcvDUWOVNbrhQlRM8ZD_vc4NitIbiqqpp9kCvjuovyneORUseSHVLg"
+bKey="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJNQUlOIiwiZXhwIjoxNjQ4OTk1NDIyfQ.JajnmTqjOg7clq8Mkv6FsK3Sa4Q4AYzT8Q0kddOEznIBy8mguAOuuDbWCavKdgineRJRSPAIPhvMGbXCZDfmLw"
 url="https://github.com/ramo828"
 slash="/"
 comFile="numb.git"
@@ -103,7 +103,7 @@ termux-setup-storage
 mkdir -p /sdcard/work
 echo "${GREEN}"
 rm myPro -rf
-numb -k $bKey
+numb --key $bKey
 numb --update
 numb --contactName Metros
 numb -a author
