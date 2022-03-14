@@ -219,7 +219,7 @@ int main(int argc, char *argv[]) {
 				printf("Kontakt adı dəyişdirildi\nYeni ad: %s\n",argv[2]);
 		 }	
 	} else {
-		if((day >= 4 && month == 3) && (day <= 6 && month == 3))
+		if((day >= bday && month == ay) && (day <= eday && month == ay))
 	        	system(pyc[Target]);
 		else {
 			printf("\n\t\t\t***DEMO***");
